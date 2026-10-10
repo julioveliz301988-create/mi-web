@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="es-PE">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ruta del Anuario · Equipo Selfie</title>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="theme-color" content="#004CB8">
+<link rel="icon" href="../img/logo-selfie.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --azul:#004CB8; --azul2:#1F5FD8; --amarillo:#FFC72C; --tinta:#1B2440; --gris:#5B6478;
+  --fondo:#F3F6FC; --card:#FFFFFF; --borde:#E2E8F4; --ok:#16A34A;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:'Nunito',system-ui,sans-serif;background:var(--fondo);color:var(--tinta);line-height:1.5}
+h1,h2,h3,.baloo{font-family:'Baloo 2','Nunito',sans-serif;line-height:1.1}
+button{font:inherit;cursor:pointer}
+.hidden{display:none!important}
+
+/* ---------- Acceso ---------- */
+#gate{min-height:100%;display:grid;place-items:center;padding:24px 16px;background:radial-gradient(circle at 20% 10%,#2A6BE0 0,#004CB8 45%,#00307A 100%)}
+.gate-card{width:100%;max-width:380px;background:#fff;border-radius:24px;padding:28px 24px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+.gate-card img.logo{height:44px}
+.gate-card img.mascotas{width:180px;margin:8px auto 4px;display:block;animation:bob 2.4s ease-in-out infinite}
+.gate-card h1{font-size:24px;margin:6px 0 4px}
+.gate-card p{color:var(--gris);font-size:14px}
+.gate-card form{margin-top:16px;display:grid;gap:10px}
+.gate-card input{width:100%;padding:12px 14px;border:2px solid var(--borde);border-radius:12px;font:inherit;font-size:16px;text-align:center}
+.gate-card input:focus{outline:none;border-color:var(--azul2)}
+.btn{border:0;border-radius:12px;padding:12px 18px;font-weight:800;background:var(--azul);color:#fff;transition:transform .15s}
+.btn:active{transform:scale(.97)}
+.btn.sec{background:#fff;color:var(--azul);border:2px solid var(--borde)}
+.btn.amarillo{background:var(--amarillo);color:var(--tinta)}
+.err{color:#D92D20;font-weight:700;font-size:14px;min-height:20px}
+.shake{animation:shake .4s}
+@keyframes shake{25%{transform:translateX(-8px)}50%{transform:translateX(8px)}75%{transform:translateX(-4px)}}
+
+/* ---------- App ---------- */
+header.top{position:sticky;top:0;z-index:5;background:#fff;border-bottom:1px solid var(--borde)}
+.top-in{max-width:1180px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:12px}
+.top-in img{height:34px}
+.top-in .t{font-weight:800;font-size:14px;color:var(--gris);flex:1}
+.top-in .t b{color:var(--tinta)}
+.chip-int{background:#FFF4D1;color:#7A5600;font-size:12px;font-weight:800;padding:4px 10px;border-radius:99px;white-space:nowrap}
+main{max-width:1180px;margin:0 auto;padding:16px}
+
+.hero{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;background:linear-gradient(120deg,#004CB8,#2A6BE0);color:#fff;border-radius:24px;padding:20px 24px;overflow:hidden}
+.hero h1{font-size:clamp(24px,4vw,36px)}
+.hero p{opacity:.9;margin:6px 0 14px;max-width:560px}
+.hero img{width:170px;animation:bob 2.4s ease-in-out infinite}
+.hero .acciones{display:flex;gap:10px;flex-wrap:wrap}
+
+.pasos{display:flex;gap:8px;overflow-x:auto;padding:14px 2px 6px;scrollbar-width:thin}
+.paso{flex:0 0 auto;display:flex;align-items:center;gap:8px;border:2px solid var(--borde);background:#fff;border-radius:99px;padding:6px 12px 6px 6px;font-weight:800;font-size:13px;color:var(--gris)}
+.paso .n{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--fondo);font-size:13px}
+.paso.on{border-color:var(--c);color:var(--tinta);box-shadow:0 4px 14px rgba(0,0,0,.08)}
+.paso.on .n{background:var(--c);color:#fff}
+.paso.hecho .n{background:#DCFCE7;color:var(--ok)}
+
+.etapa{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:16px;margin-top:8px}
+.escena{position:relative;background:#fff;border-radius:24px;overflow:hidden;border:1px solid var(--borde);align-self:start}
+.escena svg{display:block;width:100%;height:auto}
+.burbuja{position:absolute;max-width:46%;background:#fff;border:3px solid var(--tinta);border-radius:18px;padding:8px 12px;font-weight:800;font-size:clamp(12px,1.6vw,16px);box-shadow:0 6px 0 rgba(27,36,64,.15);animation:burb .35s ease-out}
+@keyframes burb{from{transform:scale(.6) translateY(10px);opacity:0}to{transform:none;opacity:1}}
+.lugar{position:absolute;right:12px;bottom:18px;background:rgba(255,255,255,.92);border-radius:99px;padding:4px 10px;font-size:12px;font-weight:800;color:var(--tinta)}
+.barra{height:6px;background:var(--fondo)}
+.barra i{display:block;height:100%;width:0;background:var(--c,var(--azul))}
+.barra i.run{animation:llenar var(--dur) linear forwards}
+@keyframes llenar{to{width:100%}}
+
+.info{background:#fff;border-radius:24px;border:1px solid var(--borde);padding:20px;display:flex;flex-direction:column;gap:12px}
+.info .fase{font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--c)}
+.info h2{font-size:28px;display:flex;align-items:center;gap:8px}
+.info .res{color:var(--gris);font-weight:600}
+.tareas{list-style:none;display:grid;gap:6px}
+.tareas li{display:flex;gap:8px;align-items:flex-start;padding:8px 10px;border-radius:12px;background:var(--fondo);font-weight:600;font-size:14px;opacity:0;transform:translateX(12px);animation:entra .4s ease-out forwards}
+.tareas li::before{content:'✓';flex:0 0 22px;height:22px;border-radius:50%;display:grid;place-items:center;background:var(--c);color:#fff;font-size:12px;font-weight:800}
+@keyframes entra{to{opacity:1;transform:none}}
+.nota{background:#FFF8E1;border-left:4px solid var(--amarillo);padding:10px 12px;border-radius:10px;font-size:14px;font-weight:700}
+.pasa{font-size:14px;color:var(--gris);font-weight:700}
+.pasa b{color:var(--tinta)}
+.tipos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+.tipos div{background:#EEF4FF;border-radius:12px;padding:8px 10px;font-size:13px;font-weight:700}
+.tipos div span{display:block;font-size:20px}
+
+.calc{border:2px dashed var(--borde);border-radius:16px;padding:12px;display:grid;gap:10px}
+.calc .ops{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.calc label.op{border:2px solid var(--borde);border-radius:12px;padding:8px 10px;font-weight:800;font-size:14px;display:flex;gap:6px;align-items:center;cursor:pointer}
+.calc label.op:has(input:checked){border-color:var(--azul2);background:#EEF4FF}
+.calc input[type=range]{width:100%;accent-color:var(--azul2)}
+.calc .total{font-family:'Baloo 2',sans-serif;font-size:26px;font-weight:800;color:var(--azul)}
+.calc small{color:var(--gris);font-size:12px}
+.tarifas{font-size:12px;color:var(--gris)}
+
+.controles{display:flex;gap:10px;justify-content:center;margin:16px 0 8px;flex-wrap:wrap}
+footer{text-align:center;color:var(--gris);font-size:12px;padding:16px 16px 28px}
+
+@media (max-width:860px){
+  .etapa{grid-template-columns:minmax(0,1fr)}
+  .hero{grid-template-columns:1fr}
+  .hero img{display:none}
+  .burbuja{max-width:60%}
+  .top-in .t span{display:none}
+}
+
+/* ---------- Animaciones de personajes (SVG) ---------- */
+svg *{transform-box:view-box}
+.bob{animation:bob 2.4s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.ojos{transform-box:fill-box;transform-origin:center;animation:parpadeo 4s infinite}
+@keyframes parpadeo{0%,93%,100%{transform:scaleY(1)}96%{transform:scaleY(.1)}}
+.arm{transform-origin:0 0}
+.fb{transform-box:fill-box;transform-origin:center}
+
+/* saludo (brazo izquierdo / derecho) */
+.saludoL{animation:saludoL 6s ease-in-out infinite}
+@keyframes saludoL{0%,44%,100%{transform:rotate(10deg)}8%,20%,32%{transform:rotate(155deg)}14%,26%,38%{transform:rotate(125deg)}}
+.saludoR{animation:saludoR 6s ease-in-out infinite}
+@keyframes saludoR{0%,44%,100%{transform:rotate(-10deg)}8%,20%,32%{transform:rotate(-155deg)}14%,26%,38%{transform:rotate(-125deg)}}
+.toque{animation:toque .6s ease-in-out infinite alternate}
+@keyframes toque{from{transform:rotate(-22deg)}to{transform:rotate(-34deg)}}
+.anillo{transform-box:fill-box;transform-origin:center;animation:anillo 1.2s ease-out infinite}
+@keyframes anillo{from{transform:scale(.4);opacity:1}to{transform:scale(1.7);opacity:0}}
+.sube{animation:sube 3s ease-out infinite}
+@keyframes sube{0%{transform:translateY(0);opacity:0}20%{opacity:1}100%{transform:translateY(-110px);opacity:0}}
+.pop1,.pop2,.pop3,.pop4{transform-box:fill-box;transform-origin:center}
+.pop1{animation:pop1 6s ease-out infinite both}
+.pop2{animation:pop2 6s ease-out infinite both}
+.pop3{animation:pop3 6s ease-out infinite both}
+.pop4{animation:pop4 6s ease-out infinite both}
+@keyframes pop1{0%,10%{opacity:0;transform:scale(.3)}16%{opacity:1;transform:scale(1.15)}20%,94%{opacity:1;transform:scale(1)}100%{opacity:0}}
+@keyframes pop2{0%,30%{opacity:0;transform:scale(.3)}36%{opacity:1;transform:scale(1.15)}40%,94%{opacity:1;transform:scale(1)}100%{opacity:0}}
+@keyframes pop3{0%,50%{opacity:0;transform:scale(.3)}56%{opacity:1;transform:scale(1.15)}60%,94%{opacity:1;transform:scale(1)}100%{opacity:0}}
+@keyframes pop4{0%,70%{opacity:0;transform:scale(.3)}76%{opacity:1;transform:scale(1.15)}80%,94%{opacity:1;transform:scale(1)}100%{opacity:0}}
+
+/* administración */
+.escribe{animation:escribe .45s ease-in-out infinite alternate}
+@keyframes escribe{from{transform:rotate(28deg)}to{transform:rotate(44deg)}}
+.sello{transform-box:fill-box;transform-origin:center;animation:sello 6s ease-out infinite both}
+@keyframes sello{0%,52%{opacity:0;transform:scale(2.4) rotate(-14deg)}58%{opacity:1;transform:scale(.9) rotate(-10deg)}62%,94%{opacity:1;transform:scale(1) rotate(-10deg)}100%{opacity:0}}
+.asiente{transform-box:fill-box;transform-origin:bottom center;animation:asiente 1.5s ease-in-out infinite}
+@keyframes asiente{0%,100%{transform:rotate(0)}50%{transform:rotate(3deg)}}
+
+/* fotografía */
+.nube{animation:nube 26s linear infinite}
+@keyframes nube{from{transform:translateX(-160px)}to{transform:translateX(900px)}}
+.camL{animation:camL 6s ease-in-out infinite}
+@keyframes camL{0%,8%,90%,100%{transform:rotate(-30deg)}18%,80%{transform:rotate(170deg)}}
+.camR{animation:camR 6s ease-in-out infinite}
+@keyframes camR{0%,8%,90%,100%{transform:rotate(30deg)}18%,80%{transform:rotate(-170deg)}}
+.camara{animation:camara 6s ease-in-out infinite}
+@keyframes camara{0%,8%,90%,100%{transform:translate(0,-70px)}18%,80%{transform:translate(0,-146px)}}
+.flash{animation:flash 6s linear infinite}
+@keyframes flash{0%,31%,37%,56%,62%,100%{opacity:0}33%,58%{opacity:1}}
+.polaroid1{animation:polaroid1 6s ease-out infinite both}
+@keyframes polaroid1{0%,32%{opacity:0;transform:translate(0,0) scale(.2)}42%{opacity:1;transform:translate(150px,-150px) rotate(-8deg) scale(1)}94%{opacity:1;transform:translate(150px,-150px) rotate(-8deg) scale(1)}100%{opacity:0;transform:translate(150px,-150px) rotate(-8deg) scale(1)}}
+.polaroid2{animation:polaroid2 6s ease-out infinite both}
+@keyframes polaroid2{0%,57%{opacity:0;transform:translate(0,0) scale(.2)}67%{opacity:1;transform:translate(250px,-170px) rotate(9deg) scale(1)}94%{opacity:1;transform:translate(250px,-170px) rotate(9deg) scale(1)}100%{opacity:0;transform:translate(250px,-170px) rotate(9deg) scale(1)}}
+.diploma{animation:diploma 6s ease-in-out infinite}
+@keyframes diploma{0%,22%,90%,100%{transform:rotate(-12deg)}30%,82%{transform:rotate(-150deg)}}
+.pose{animation:pose 6s ease-in-out infinite}
+@keyframes pose{0%,22%,90%,100%{transform:rotate(12deg)}30%,82%{transform:rotate(40deg)}}
+
+/* edición */
+.color{transform-box:fill-box;transform-origin:left center;animation:color 6s ease-in-out infinite}
+@keyframes color{0%,8%{transform:scaleX(0)}48%,92%{transform:scaleX(1)}100%{transform:scaleX(0)}}
+.linea{animation:linea 6s ease-in-out infinite}
+@keyframes linea{0%,8%{transform:translateX(0)}48%,92%{transform:translateX(170px)}100%{transform:translateX(0)}}
+.mouse{animation:mouse 1.2s ease-in-out infinite}
+@keyframes mouse{0%,100%{transform:rotate(-22deg)}25%{transform:rotate(-30deg)}50%{transform:rotate(-18deg)}75%{transform:rotate(-28deg)}}
+.gira{transform-box:fill-box;animation:gira .8s linear infinite}
+.giraLento{transform-box:fill-box;animation:gira 6s linear infinite}
+@keyframes gira{to{transform:rotate(360deg)}}
+.giraO{transform-box:view-box;transform-origin:0 0}
+
+/* postventa */
+.avance{transform-box:fill-box;transform-origin:left center;animation:avance 6s ease-in-out infinite}
+@keyframes avance{0%,10%{transform:scaleX(0)}80%,94%{transform:scaleX(1)}100%{transform:scaleX(0)}}
+
+/* impresión */
+.hoja{animation:hoja 2s ease-in infinite both}
+@keyframes hoja{0%{transform:translate(0,0);opacity:0}15%{opacity:1}70%{transform:translate(0,70px);opacity:1}100%{transform:translate(0,92px);opacity:0}}
+.luz{animation:luz .8s steps(2) infinite}
+@keyframes luz{50%{opacity:.25}}
+.revisa{animation:revisa 6s ease-in-out infinite}
+@keyframes revisa{0%,10%,90%,100%{transform:rotate(-15deg)}25%,75%{transform:rotate(-120deg)}}
+.lupa{animation:lupa 1.2s ease-in-out infinite alternate}
+@keyframes lupa{from{transform:translate(-4px,0)}to{transform:translate(6px,4px)}}
+
+/* taller */
+.sierra{animation:sierra .35s ease-in-out infinite alternate}
+@keyframes sierra{from{transform:rotate(-30deg)}to{transform:rotate(-58deg)}}
+.polvo{animation:polvo 1s ease-out infinite}
+@keyframes polvo{0%{transform:translate(0,0);opacity:1}100%{transform:translate(-20px,30px);opacity:0}}
+.dobla{transform-box:fill-box;transform-origin:center top;animation:dobla 2s ease-in-out infinite}
+@keyframes dobla{0%,15%{transform:scaleY(1)}50%,85%{transform:scaleY(-1)}100%{transform:scaleY(1)}}
+.doblaL{animation:doblaL 2s ease-in-out infinite}
+@keyframes doblaL{0%,15%,100%{transform:rotate(-30deg)}50%,85%{transform:rotate(-80deg)}}
+.doblaR{animation:doblaR 2s ease-in-out infinite}
+@keyframes doblaR{0%,15%,100%{transform:rotate(30deg)}50%,85%{transform:rotate(80deg)}}
+.brocha{animation:brocha .4s ease-in-out infinite alternate}
+@keyframes brocha{from{transform:rotate(20deg)}to{transform:rotate(48deg)}}
+.prensa{animation:prensa 2s ease-in-out infinite}
+@keyframes prensa{0%,40%,100%{transform:translateY(-26px)}55%,85%{transform:translateY(0)}}
+.brillo{transform-box:fill-box;transform-origin:center;animation:brillo 1.6s ease-in-out infinite}
+@keyframes brillo{0%,100%{transform:scale(.6) rotate(0);opacity:.2}50%{transform:scale(1.2) rotate(45deg);opacity:1}}
+
+/* entrega */
+.moto{animation:moto 6s ease-in-out infinite}
+@keyframes moto{0%{transform:translateX(0)}85%{transform:translateX(300px)}86%,100%{transform:translateX(300px);opacity:0}}
+.rueda{transform-box:fill-box;transform-origin:center;animation:gira .4s linear infinite}
+.pin{transform-box:fill-box;transform-origin:bottom center;animation:pin 1.4s ease-in-out infinite}
+@keyframes pin{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.entregaL{animation:entregaL 6s ease-in-out infinite}
+@keyframes entregaL{0%,100%{transform:rotate(-38deg)}40%,60%{transform:rotate(-70deg)}}
+.entregaR{animation:entregaR 6s ease-in-out infinite}
+@keyframes entregaR{0%,100%{transform:rotate(38deg)}40%,60%{transform:rotate(10deg)}}
+.caja{animation:caja 6s ease-in-out infinite}
+@keyframes caja{0%,100%{transform:translate(0,-60px)}40%,60%{transform:translate(-26px,-74px)}}
+
+@media (prefers-reduced-motion:reduce){.burbuja,.tareas li{animation:none;opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<!-- ============ ACCESO SOLO PARA TRABAJADORES ============ -->
+<section id="gate">
+  <div class="gate-card" id="gateCard">
+    <img class="logo" src="../img/logo-selfie.webp" alt="Selfie">
+    <img class="mascotas" src="../img/equipo-mascotas.webp" alt="Personajes de Selfie Studio">
+    <h1>Ruta del Anuario</h1>
+    <p>App interna. Solo para el equipo de Selfie Studio.</p>
+    <form id="gateForm" autocomplete="off">
+      <input id="clave" type="password" placeholder="Clave del equipo" aria-label="Clave del equipo" required>
+      <button class="btn" type="submit">Entrar</button>
+      <div class="err" id="gateErr" role="alert"></div>
+    </form>
+  </div>
+</section>
+
+<!-- ============ APP ============ -->
+<div id="app" class="hidden">
+  <header class="top">
+    <div class="top-in">
+      <img src="../img/logo-selfie.webp" alt="Selfie">
+      <div class="t"><b>Ruta del Anuario</b><span> · cómo se hace un anuario, área por área</span></div>
+      <span class="chip-int">🔒 Uso interno</span>
+      <button class="btn sec" id="salir" style="padding:6px 12px">Salir</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <h1>¿Cómo se hace un anuario Selfie?</h1>
+        <p>8 áreas, un mismo anuario. Mira la animación: cada área aparece con su trabajador haciendo su tarea y lo que entrega a la siguiente.</p>
+        <div class="acciones">
+          <button class="btn amarillo" id="verTour">▶ Ver animación completa</button>
+          <button class="btn sec" id="irInicio" style="background:transparent;color:#fff;border-color:rgba(255,255,255,.5)">Empezar desde Ventas</button>
+        </div>
+      </div>
+      <img src="../img/equipo-mascotas.webp" alt="">
+    </section>
+
+    <nav class="pasos" id="pasos" aria-label="Áreas"></nav>
+
+    <section class="etapa">
+      <div class="escena" id="escena">
+        <div id="svgWrap"></div>
+        <span class="lugar" id="lugar"></span>
+        <div class="burbuja" id="burbuja"></div>
+        <div class="barra"><i id="barra"></i></div>
+      </div>
+      <article class="info" id="info"></article>
+    </section>
+
+    <div class="controles">
+      <button class="btn sec" id="ant">◀ Anterior</button>
+      <button class="btn" id="play">▶ Reproducir</button>
+      <button class="btn sec" id="sig">Siguiente ▶</button>
+    </div>
+  </main>
+  <footer>Corporación Selfie Studio S.A.C. · Material interno de capacitación · No compartir fuera del equipo.</footer>
+</div>
+
+<script>
+/* ===================== CONFIGURACIÓN ===================== */
+const CONFIG = {
+  // SHA-256 de la clave del equipo. Clave por defecto: selfie2026 (cámbiala, ver README).
+  claveHash: 'c27acea25e1ad09c64eee500645f6dab440ed4415f786cf520b191aabe790135',
+  segundosPorArea: 7.5,
+  // Tarifas de delivery por distancia (EJEMPLO: actualízalas con las tarifas reales).
+  delivery: [
+    { hastaKm: 5,  precio: 10 },
+    { hastaKm: 10, precio: 15 },
+    { hastaKm: 20, precio: 20 },
+    { hastaKm: 35, precio: 30 }
+  ],
+  oficina: 'Av. José Gálvez Barrenechea 1051, Of. 103, San Borja'
+};
+
+/* ===================== PERSONAJES (estilo Selfie Studio) ===================== */
+const PIEL = '#F7C9A3', PELO = '#6B3B1E';
+
+function brazo(lado, b = {}, ropa) {
+  const x = lado === 'L' ? -40 : 40;
+  const rot = b.rot ?? (lado === 'L' ? 8 : -8);
+  return `<g transform="translate(${x},-104)"><g class="arm ${b.cls || ''}" style="transform:rotate(${rot}deg)">
+    <rect x="-8" y="4" width="16" height="34" rx="8" fill="${PIEL}"/>
+    <circle cx="0" cy="5" r="13" fill="${ropa}" stroke="#E3E5EC" stroke-width="1.5"/>
+    <circle cx="0" cy="42" r="11.5" fill="${PIEL}"/>
+    ${b.prop ? `<g transform="translate(0,42)">${b.prop}</g>` : ''}
+  </g></g>`;
+}
+
+function persona(o = {}) {
+  const ropa = o.toga ? (o.togaColor || '#1F5FD8') : (o.shirt || '#FFFFFF');
+  const pelo = o.pelo || PELO;
+  let s = '';
+  // piernas y zapatos
+  s += `<rect x="-32" y="-54" width="26" height="46" rx="10" fill="${o.pants || '#1E1E24'}"/>
+        <rect x="6" y="-54" width="26" height="46" rx="10" fill="${o.pants || '#1E1E24'}"/>
+        <ellipse cx="-21" cy="-9" rx="20" ry="10" fill="#141418"/><ellipse cx="21" cy="-9" rx="20" ry="10" fill="#141418"/>`;
+  // torso
+  if (o.toga) {
+    s += `<path d="M-44 -26 Q-50 -112 -28 -114 L28 -114 Q50 -112 44 -26 Z" fill="${ropa}"/>
+          <path d="M-20 -114 L0 -84 L20 -114 L12 -114 L0 -96 L-12 -114Z" fill="#FFC72C"/>
+          <path d="M-16 -112 L-10 -40 M16 -112 L10 -40" stroke="#FFC72C" stroke-width="7" stroke-linecap="round"/>`;
+  } else {
+    s += `<rect x="-42" y="-116" width="84" height="72" rx="26" fill="${ropa}" stroke="#E3E5EC" stroke-width="2"/>
+          <path d="M-18 -114 L0 -101 L-5 -94 L-23 -107Z M18 -114 L0 -101 L5 -94 L23 -107Z" fill="${ropa}" stroke="#DADDE6" stroke-width="1.5"/>`;
+    if (o.logo !== false) {
+      s += `<path d="M-29 -88 L-19 -93 L-9 -88 L-19 -84Z" fill="#FFC72C"/>
+            <text x="2" y="-66" text-anchor="middle" font-family="Baloo 2,sans-serif" font-weight="800" font-size="22" fill="#1F5FD8" font-style="italic">Selfie</text>
+            <path d="M-26 -60 Q2 -66 30 -64" stroke="#1F5FD8" stroke-width="2.5" fill="none" stroke-linecap="round"/>`;
+    }
+  }
+  // cabeza
+  s += `<rect x="-40" y="-198" width="80" height="98" rx="38" fill="${PIEL}"/>`;
+  // pelo
+  if (o.chica) {
+    s += `<path d="M40 -190 Q82 -196 78 -150 Q74 -114 52 -106 Q64 -140 44 -170Z" fill="${pelo}"/>
+          <path d="M-45 -118 Q-54 -204 0 -204 Q50 -204 47 -132 Q40 -172 6 -182 Q-24 -170 -36 -150 Q-40 -132 -45 -118Z" fill="${pelo}"/>`;
+  } else {
+    s += `<path d="M-43 -148 Q-50 -204 -6 -208 Q34 -216 46 -184 Q50 -166 42 -146 Q36 -170 12 -178 Q-12 -170 -30 -178 Q-36 -162 -43 -148Z" fill="${pelo}"/>`;
+  }
+  // cara
+  s += `<g class="ojos"><ellipse cx="-15" cy="-146" rx="5.5" ry="8.5" fill="#1B1B1F"/><ellipse cx="15" cy="-146" rx="5.5" ry="8.5" fill="#1B1B1F"/></g>
+        <path d="M-24 -166 Q-15 -172 -6 -166 M6 -166 Q15 -172 24 -166" stroke="${pelo}" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <path d="M-7 -124 Q0 -118 7 -124" stroke="#9A4B2B" stroke-width="3" fill="none" stroke-linecap="round"/>`;
+  if (o.chica) {
+    s += `<ellipse cx="-26" cy="-130" rx="7" ry="4.5" fill="#F48FA0" opacity=".6"/><ellipse cx="26" cy="-130" rx="7" ry="4.5" fill="#F48FA0" opacity=".6"/>
+          <path d="M-21 -152 l-4 -3 M9 -152 l-3 -4 M21 -152 l4 -3" stroke="#1B1B1F" stroke-width="2" stroke-linecap="round"/>`;
+  }
+  if (o.birrete) {
+    s += `<rect x="-26" y="-206" width="52" height="16" rx="3" fill="#1A1A1A"/>
+          <polygon points="-54,-206 0,-224 54,-206 0,-192" fill="#222"/>
+          <path d="M0 -208 L40 -200 L40 -176" stroke="#FFC72C" stroke-width="3" fill="none"/><circle cx="40" cy="-174" r="4" fill="#FFC72C"/>`;
+  }
+  if (o.audifonos) {
+    s += `<path d="M-45 -150 Q-46 -216 0 -216 Q46 -216 45 -150" stroke="#222" stroke-width="7" fill="none"/>
+          <rect x="-54" y="-166" width="16" height="30" rx="7" fill="#2B2B30"/><rect x="38" y="-166" width="16" height="30" rx="7" fill="#2B2B30"/>
+          <path d="M48 -138 Q44 -114 16 -116" stroke="#222" stroke-width="4" fill="none" stroke-linecap="round"/><circle cx="14" cy="-116" r="5" fill="#222"/>`;
+  }
+  s += o.medio || '';
+  s += brazo('L', o.L, ropa) + brazo('R', o.R, ropa);
+  s += o.frente || '';
+  return s;
+}
+
+function coloca(x, y, esc, o, extraCls = '') {
+  return `<g transform="translate(${x},${y}) scale(${esc})"><g class="bob ${extraCls}">${persona(o)}</g></g>`;
+}
+
+/* accesorios en la mano (0,0 = centro de la mano) */
+const P = {
+  tablet: `<g transform="rotate(10)"><rect x="-4" y="-38" width="36" height="52" rx="6" fill="#2B2D33"/><rect x="0" y="-34" width="28" height="42" rx="3" fill="#5AA0FF"/><rect x="4" y="-28" width="20" height="5" rx="2" fill="#fff"/><rect x="4" y="-19" width="14" height="5" rx="2" fill="#fff" opacity=".7"/></g>`,
+  lapicero: `<rect x="-3" y="-4" width="6" height="34" rx="3" fill="#1F5FD8"/><path d="M-3 30 L0 38 L3 30Z" fill="#222"/>`,
+  diploma: `<rect x="-6" y="-30" width="12" height="46" rx="6" fill="#FFFDF5" stroke="#E0D6B8"/><rect x="-7" y="-10" width="14" height="5" fill="#E53935"/>`,
+  sierra: `<g transform="rotate(-70)"><rect x="-6" y="-8" width="16" height="16" rx="4" fill="#E53935"/><path d="M8 -6 L70 -2 L70 6 L8 6Z" fill="#C9CED8"/><path d="M14 6 l4 5 l4 -5 l4 5 l4 -5 l4 5 l4 -5 l4 5 l4 -5 l4 5 l4 -5 l4 5" stroke="#9AA1AE" stroke-width="2" fill="none"/></g>`,
+  brocha: `<g transform="rotate(-40)"><rect x="-3" y="-4" width="6" height="30" rx="2" fill="#A0652F"/><rect x="-7" y="24" width="14" height="14" rx="2" fill="#F5F5F5"/></g>`,
+  hoja: `<rect x="-6" y="-36" width="40" height="52" rx="3" fill="#fff" stroke="#CBD3E1" stroke-width="2"/><rect x="-1" y="-30" width="30" height="22" fill="#9CC9FF"/><rect x="-1" y="-4" width="20" height="4" fill="#CBD3E1"/>`,
+};
+
+/* fondos */
+const oficina = (pared = '#EAF2FF') => `
+  <rect width="800" height="450" fill="${pared}"/>
+  <rect y="362" width="800" height="88" fill="#D5E0F2"/>
+  <rect x="40" y="50" width="150" height="110" rx="10" fill="#fff" stroke="#C9D6EE" stroke-width="6"/>
+  <rect x="48" y="58" width="134" height="94" rx="4" fill="#BFE0FF"/>
+  <circle cx="160" cy="84" r="14" fill="#FFE27A"/>
+  <path d="M48 152 L98 112 L134 140 L160 120 L182 140 L182 152Z" fill="#8CC68C"/>`;
+const exterior = () => `
+  <rect width="800" height="450" fill="#BEE6FF"/>
+  <circle cx="690" cy="70" r="38" fill="#FFE27A"/>
+  <g class="nube"><g fill="#fff"><ellipse cx="80" cy="70" rx="46" ry="18"/><ellipse cx="110" cy="58" rx="30" ry="20"/></g></g>
+  <g class="nube" style="animation-delay:-13s"><g fill="#fff"><ellipse cx="60" cy="120" rx="40" ry="15"/><ellipse cx="86" cy="110" rx="24" ry="16"/></g></g>
+  <path d="M0 300 Q200 250 400 290 T800 280 V450 H0Z" fill="#9AD68E"/>
+  <rect y="360" width="800" height="90" fill="#7CC36E"/>
+  <rect x="56" y="200" width="16" height="110" fill="#8B5A2B"/><circle cx="64" cy="190" r="48" fill="#4FAE5A"/><circle cx="34" cy="214" r="30" fill="#5DBB66"/>
+  <rect x="740" y="210" width="14" height="100" fill="#8B5A2B"/><circle cx="747" cy="200" r="40" fill="#4FAE5A"/>`;
+const taller = () => `
+  <rect width="800" height="450" fill="#F4EBDD"/>
+  <rect y="362" width="800" height="88" fill="#D9C7A8"/>
+  <g stroke="#E3D5BE" stroke-width="3">${[0,1,2,3,4,5,6,7].map(i=>`<line x1="${i*110}" y1="0" x2="${i*110}" y2="362"/>`).join('')}</g>
+  <rect x="300" y="30" width="200" height="40" rx="8" fill="#004CB8"/><text x="400" y="58" text-anchor="middle" font-family="Baloo 2" font-weight="800" font-size="22" fill="#fff">TALLER SELFIE</text>`;
+const mesa = (x, w, y = 318) => `<rect x="${x}" y="${y}" width="${w}" height="16" rx="5" fill="#C98B55"/><rect x="${x+10}" y="${y+16}" width="${w-20}" height="${410-y}" rx="6" fill="#B07444"/>`;
+const etiqueta = (x, y, txt, c = '#1B2440') => `<rect x="${x-70}" y="${y-18}" width="140" height="28" rx="14" fill="#fff" stroke="${c}" stroke-width="2"/><text x="${x}" y="${y+2}" text-anchor="middle" font-family="Nunito" font-weight="800" font-size="14" fill="${c}">${txt}</text>`;
+
+/* ===================== ÁREAS ===================== */
+const AREAS = [
+  {
+    nombre: 'Ventas', emoji: '📞', color: '#1F5FD8', lugar: '🏢 Oficina',
+    resumen: 'Llama a los clientes y se mantiene en contacto con ellos hasta que reservan.',
+    tareas: ['Llamar a directores, delegados y papás de las promociones', 'Presentar paquetes y precios de preventa', 'Enviar la información por WhatsApp', 'Agendar la cita en oficina o la visita', 'Hacer seguimiento hasta la reserva'],
+    pasa: 'Administración, con los datos del cliente interesado.',
+    burbujas: ['¡Hola! Le llamo de Selfie Anuarios 👋', '¿Su promoción ya tiene anuario?', 'Le envío la info por WhatsApp 📲', '¡Genial! Le agendo su cita ✅'],
+    burbujaPos: { left: '4%', top: '6%' },
+    escena: () => oficina() + `
+      ${coloca(250, 400, 1.3, { chica: true, audifonos: true, L: { cls: 'saludoL' }, R: { cls: 'toque', rot: -28, prop: P.tablet } })}
+      ${mesa(110, 290, 330)}
+      <rect x="150" y="300" width="90" height="30" rx="4" fill="#2B2D33"/><rect x="160" y="306" width="70" height="20" fill="#5AA0FF"/>
+      <circle class="anillo" cx="168" cy="200" r="22" fill="none" stroke="#1F5FD8" stroke-width="4"/>
+      <circle class="anillo" style="animation-delay:.6s" cx="168" cy="200" r="22" fill="none" stroke="#1F5FD8" stroke-width="4"/>
+      <g class="sube"><circle cx="350" cy="240" r="16" fill="#25D366"/><path d="M343 247 l3-7 a8 8 0 1 1 3 3z" fill="#fff"/></g>
+      <g class="sube" style="animation-delay:1.5s"><circle cx="380" cy="220" r="12" fill="#25D366"/></g>
+      <rect x="470" y="80" width="290" height="250" rx="18" fill="#fff" stroke="#C9D6EE" stroke-width="3"/>
+      <text x="492" y="116" font-family="Baloo 2" font-weight="800" font-size="22" fill="#1B2440">📋 Llamadas de hoy</text>
+      ${['Promo 5 años · Aula Sol', 'Promo 6to primaria', 'Promo 5to secundaria', 'Promo inicial · Aula Luna'].map((t, i) => `
+        <rect x="490" y="${136 + i * 46}" width="250" height="38" rx="10" fill="#F3F6FC"/>
+        <text x="504" y="${161 + i * 46}" font-family="Nunito" font-weight="700" font-size="15" fill="#1B2440">📞 ${t}</text>
+        <g class="pop${i + 1}"><circle cx="720" cy="${155 + i * 46}" r="12" fill="#16A34A"/><path d="M714 ${155 + i * 46} l4 4 l8 -8" stroke="#fff" stroke-width="3" fill="none"/></g>`).join('')}`
+  },
+  {
+    nombre: 'Administración', emoji: '📝', color: '#7C3AED', lugar: '🏢 Oficina',
+    resumen: 'Genera los contratos y brinda la atención directa al cliente.',
+    tareas: ['Atender directamente a papás y delegados (presencial y WhatsApp)', 'Generar el contrato: paquete, alumnos y fechas', 'Registrar la reserva y los pagos', 'Entregar comprobantes y cronograma', 'Programar la sesión de fotos con Fotografía'],
+    pasa: 'Fotografía, con la fecha y lugar de la sesión.',
+    burbujas: ['¡Bienvenidos! Tomen asiento 😊', 'Revisemos su paquete y contrato', 'Firmamos aquí ✍️', '¡Reserva confirmada! 🎉'],
+    burbujaPos: { left: '4%', top: '6%' },
+    escena: () => oficina('#F1ECFF') + `
+      ${coloca(220, 400, 1.25, { L: { rot: -20 }, R: { cls: 'escribe', prop: P.lapicero } })}
+      <g transform="translate(600,410) scale(1.05)"><g class="asiente">${persona({ shirt: '#7FB3A8', logo: false, pelo: '#2B2B2B', L: { rot: 10 }, R: { rot: 20 } })}</g></g>
+      ${mesa(120, 560, 352)}
+      <rect x="190" y="300" width="140" height="52" rx="4" fill="#fff" stroke="#CBD3E1" stroke-width="2"/>
+      <text x="202" y="322" font-family="Baloo 2" font-weight="800" font-size="16" fill="#7C3AED">CONTRATO</text>
+      <path d="M202 334 h100 M202 343 h70" stroke="#CBD3E1" stroke-width="3"/>
+      <g class="sello"><rect x="300" y="196" width="190" height="56" rx="10" fill="none" stroke="#16A34A" stroke-width="5"/><text x="395" y="233" text-anchor="middle" font-family="Baloo 2" font-weight="800" font-size="24" fill="#16A34A">FIRMADO ✓</text></g>
+      <g class="pop2"><rect x="470" y="100" width="150" height="60" rx="12" fill="#fff" stroke="#7C3AED" stroke-width="3"/><text x="545" y="126" text-anchor="middle" font-family="Nunito" font-weight="800" font-size="14" fill="#1B2440">🧾 Comprobante</text><text x="545" y="148" text-anchor="middle" font-family="Nunito" font-weight="700" font-size="13" fill="#5B6478">Reserva registrada</text></g>
+      <g class="pop4"><rect x="640" y="100" width="130" height="60" rx="12" fill="#fff" stroke="#7C3AED" stroke-width="3"/><text x="705" y="126" text-anchor="middle" font-family="Nunito" font-weight="800" font-size="14" fill="#1B2440">📅 Sesión</text><text x="705" y="148" text-anchor="middle" font-family="Nunito" font-weight="700" font-size="13" fill="#5B6478">programada</text></g>`
+  },
+  {
+    nombre: 'Fotografía', emoji: '📸', color: '#EA580C', lugar: '🌳 Exterior (no en oficina)',
+    resumen: 'Sale a exteriores (parque, playa, colegio) y realiza la sesión de fotos de cada alumno.',
+    tareas: ['Coordinar locación, hora y luz natural', 'Llevar togas, birretes y diplomas', 'Tomar todas las fotos de la lista por alumno', 'Respaldar las fotos el mismo día', 'Enviar el material a Edición'],
+    tipos: [['🎓', 'Individual con toga y birrete'], ['🌳', 'Individual en exterior'], ['👨‍👩‍👧', 'Familiar con mamá y papá'], ['👫', 'Grupal del aula'], ['🧩', 'Collage con amigos'], ['📜', 'Con diploma (graduación)']],
+    pasa: 'Edición, con las fotos respaldadas y ordenadas por alumno.',
+    burbujas: ['¡Sonríe! 📸', 'Ahora con toga y birrete 🎓', 'Levanta tu diploma 📜', '¡Ahora con mamá y papá! 👨‍👩‍👧'],
+    burbujaPos: { left: '3%', top: '6%' },
+    escena: () => exterior() + `
+      ${coloca(240, 405, 1.25, { L: { cls: 'camL' }, R: { cls: 'camR' },
+        frente: `<g class="camara"><rect x="-42" y="-26" width="84" height="52" rx="10" fill="#1E1E22"/><rect x="-30" y="-36" width="26" height="12" rx="3" fill="#1E1E22"/><circle cx="6" cy="0" r="20" fill="#3A3A42" stroke="#111" stroke-width="4"/><circle cx="6" cy="0" r="9" fill="#5AA0FF"/><circle class="flash" cx="-26" cy="-14" r="10" fill="#FFF7AE"/></g>` })}
+      ${coloca(560, 405, .95, { toga: true, birrete: true, L: { cls: 'pose' }, R: { cls: 'diploma', prop: P.diploma } })}
+      <g transform="translate(240,224)">
+        <g class="polaroid1"><rect x="-34" y="-40" width="68" height="80" rx="4" fill="#fff" stroke="#E2E8F4" stroke-width="2"/><rect x="-28" y="-34" width="56" height="52" fill="#9CC9FF"/><circle cx="0" cy="-12" r="12" fill="#F7C9A3"/><polygon points="-18,-22 0,-30 18,-22 0,-16" fill="#222"/><rect x="-14" y="0" width="28" height="18" fill="#1F5FD8"/><text x="0" y="34" text-anchor="middle" font-family="Nunito" font-weight="800" font-size="10" fill="#1B2440">TOGA</text></g>
+        <g class="polaroid2"><rect x="-34" y="-40" width="68" height="80" rx="4" fill="#fff" stroke="#E2E8F4" stroke-width="2"/><rect x="-28" y="-34" width="56" height="52" fill="#9AD68E"/><circle cx="-10" cy="-8" r="9" fill="#F7C9A3"/><circle cx="10" cy="-8" r="9" fill="#F7C9A3"/><circle cx="0" cy="4" r="7" fill="#F7C9A3"/><text x="0" y="34" text-anchor="middle" font-family="Nunito" font-weight="800" font-size="10" fill="#1B2440">FAMILIAR</text></g>
+      </g>
+      <rect class="flash" width="800" height="450" fill="#fff" opacity="0" style="mix-blend-mode:screen"/>`
+  },
+  {
+    nombre: 'Edición', emoji: '🎨', color: '#DB2777', lugar: '🏢 Oficina',
+    resumen: 'Edita las fotos y arma las plantillas del anuario. Es el área donde más tiempo se va.',
+    tareas: ['Seleccionar las mejores fotos de cada alumno', 'Retocar color, luz, piel y fondos', 'Diseñar las páginas con las plantillas del anuario', 'Armar el boceto digital por alumno', 'Aplicar las correcciones que piden los papás'],
+    nota: '⏱️ Es la etapa más larga del proceso: planifica bien los tiempos.',
+    pasa: 'Postventa, con el boceto digital listo para que el papá lo revise.',
+    burbujas: ['Retoque de color y luz ✨', 'Recorte y fondo 🖼️', 'Armando la plantilla 📖', '¡Boceto digital listo! ✅'],
+    burbujaPos: { left: '3%', top: '6%' },
+    escena: () => oficina('#FFEFF6') + `
+      ${coloca(170, 400, 1.2, { chica: true, L: { rot: -24 }, R: { cls: 'mouse' } })}
+      ${mesa(60, 700, 355)}
+      <rect x="330" y="105" width="400" height="232" rx="14" fill="#2B2D33"/>
+      <rect x="344" y="119" width="372" height="190" rx="6" fill="#F3F6FC"/>
+      <rect x="505" y="337" width="50" height="18" fill="#2B2D33"/>
+      <g><rect x="356" y="131" width="200" height="166" rx="4" fill="#B9BCC4"/><circle cx="456" cy="195" r="30" fill="#D6D7DB"/><rect x="420" y="231" width="72" height="66" rx="20" fill="#9EA2AA"/></g>
+      <g class="color"><rect x="356" y="131" width="200" height="166" rx="4" fill="#9CC9FF"/><circle cx="456" cy="195" r="30" fill="#F7C9A3"/><polygon points="420,177 456,163 492,177 456,189" fill="#222"/><rect x="420" y="231" width="72" height="66" rx="20" fill="#1F5FD8"/><path d="M440 231 L456 261 L472 231" fill="#FFC72C"/></g>
+      <g class="linea"><rect x="355" y="127" width="4" height="174" fill="#DB2777"/><circle cx="357" cy="215" r="8" fill="#DB2777"/></g>
+      ${[0, 1, 2, 3].map(i => `<g class="pop${i + 1}"><rect x="${578 + (i % 2) * 64}" y="${133 + Math.floor(i / 2) * 84}" width="54" height="72" rx="4" fill="#fff" stroke="#DB2777" stroke-width="2"/><rect x="${584 + (i % 2) * 64}" y="${139 + Math.floor(i / 2) * 84}" width="42" height="34" fill="${['#9CC9FF', '#9AD68E', '#FFD58A', '#F9A8D4'][i]}"/><rect x="${584 + (i % 2) * 64}" y="${179 + Math.floor(i / 2) * 84}" width="30" height="4" fill="#CBD3E1"/></g>`).join('')}
+      <g transform="translate(270,92)"><circle r="44" fill="#fff" stroke="#DB2777" stroke-width="6"/><g class="giraLento giraO"><rect x="-3" y="-26" width="6" height="28" rx="3" fill="#1B2440" class="giraO"/></g><g class="gira giraO"><rect x="-2" y="-36" width="4" height="38" rx="2" fill="#DB2777"/></g><circle r="5" fill="#1B2440"/></g>
+      <rect x="204" y="146" width="132" height="28" rx="14" fill="#DB2777"/><text x="270" y="165" text-anchor="middle" font-family="Nunito" font-weight="800" font-size="13" fill="#fff">Etapa más larga</text>`
+  },
+  {
+    nombre: 'Postventa', emoji: '💬', color: '#0891B2', lugar: '🏢 Oficina · WhatsApp',
+    resumen: 'Acompaña al papá en todo el proceso: resuelve dudas y le cuenta cómo va su anuario hasta que lo recibe.',
+    tareas: ['Resolver las dudas de los papás', 'Comunicar el avance del anuario', 'Enviar el boceto digital para revisión', 'Recoger correcciones y pasarlas a Edición', 'Hacer seguimiento hasta la impresión y la entrega'],
+    nota: '⭐ Área fundamental: es la voz de Selfie con el papá durante todo el proceso.',
+    pasa: 'Impresión, cuando el papá aprueba el boceto digital.',
+    burbujas: ['¡Hola! Su anuario va en edición 🎨', 'Le envío su boceto digital 📲', '¿Algún cambio? Lo corregimos ✏️', '¡Aprobado! Pasa a impresión 🖨️'],
+    burbujaPos: { left: '3%', top: '6%' },
+    escena: () => oficina('#E6F7FB') + `
+      ${coloca(220, 405, 1.3, { chica: true, audifonos: true, L: { cls: 'saludoL' }, R: { cls: 'toque', rot: -28, prop: P.tablet } })}
+      <rect x="440" y="40" width="210" height="330" rx="28" fill="#1B2440"/>
+      <rect x="452" y="60" width="186" height="290" rx="16" fill="#ECE5DD"/>
+      <rect x="452" y="60" width="186" height="38" rx="16" fill="#075E54"/><text x="470" y="85" font-family="Nunito" font-weight="800" font-size="14" fill="#fff">👩 Mamá de Sofía</text>
+      <g class="pop1"><rect x="462" y="110" width="140" height="40" rx="10" fill="#fff"/><text x="472" y="135" font-family="Nunito" font-weight="700" font-size="13" fill="#1B2440">¿Cómo va mi anuario?</text></g>
+      <g class="pop2"><rect x="488" y="160" width="140" height="40" rx="10" fill="#DCF8C6"/><text x="498" y="185" font-family="Nunito" font-weight="700" font-size="13" fill="#1B2440">¡En edición! 🎨</text></g>
+      <g class="pop3"><rect x="488" y="210" width="140" height="56" rx="10" fill="#DCF8C6"/><rect x="498" y="218" width="40" height="40" rx="4" fill="#9CC9FF"/><text x="546" y="243" font-family="Nunito" font-weight="700" font-size="12" fill="#1B2440">Su boceto 📖</text></g>
+      <g class="pop4"><rect x="462" y="276" width="140" height="40" rx="10" fill="#fff"/><text x="472" y="301" font-family="Nunito" font-weight="700" font-size="13" fill="#1B2440">¡Aprobado! 😍👍</text></g>
+      <g transform="translate(300,412)">
+        <rect x="0" y="-14" width="460" height="12" rx="6" fill="#CFE7EE"/>
+        <rect class="avance" x="0" y="-14" width="460" height="12" rx="6" fill="#0891B2"/>
+        ${['Sesión', 'Edición', 'Boceto', 'Impresión', 'Entrega'].map((t, i) => `<circle cx="${i * 115}" cy="-8" r="12" fill="#fff" stroke="#0891B2" stroke-width="4"/><text x="${i * 115}" y="24" text-anchor="middle" font-family="Nunito" font-weight="800" font-size="13" fill="#1B2440">${t}</text>`).join('')}
+      </g>`
+  },
+  {
+    nombre: 'Impresión', emoji: '🖨️', color: '#16A34A', lugar: '🏭 Área de impresión',
+    resumen: 'Cuando el boceto digital está aprobado, imprime las páginas del anuario.',
+    tareas: ['Imprimir solo bocetos digitales aprobados', 'Revisar archivos: resolución, colores y orden de páginas', 'Imprimir en papel fotográfico', 'Controlar la calidad de cada hoja', 'Pasar las hojas al Taller'],
+    pasa: 'Taller y producción, con las hojas impresas y revisadas.',
+    burbujas: ['Boceto aprobado ✅', 'Imprimiendo en papel fotográfico 🖨️', 'Reviso los colores 🔍', '¡Hojas listas para el taller! 📦'],
+    burbujaPos: { left: '3%', top: '6%' },
+    escena: () => oficina('#EAF8EE') + `
+      <g class="pop1"><rect x="440" y="50" width="240" height="54" rx="12" fill="#fff" stroke="#16A34A" stroke-width="4"/><text x="560" y="84" text-anchor="middle" font-family="Baloo 2" font-weight="800" font-size="19" fill="#16A34A">BOCETO APROBADO ✓</text></g>
+      ${coloca(190, 405, 1.2, { L: { rot: 10 }, R: { cls: 'revisa', prop: P.hoja },
+        frente: `<g transform="translate(-60,-150)"><g class="lupa"><circle r="16" fill="rgba(156,201,255,.4)" stroke="#1B2440" stroke-width="5"/><rect x="10" y="10" width="8" height="26" rx="4" fill="#1B2440" transform="rotate(-45 14 14)"/></g></g>` })}
+      <rect x="380" y="130" width="360" height="200" rx="20" fill="#E8ECF4" stroke="#C3CBDA" stroke-width="3"/>
+      <rect x="400" y="150" width="140" height="40" rx="8" fill="#2B2D33"/><rect x="410" y="160" width="80" height="20" rx="4" fill="#5AE38C"/>
+      <circle class="luz" cx="700" cy="170" r="9" fill="#16A34A"/><circle cx="670" cy="170" r="9" fill="#FFC72C"/>
+      <rect x="430" y="232" width="300" height="14" rx="7" fill="#1B2440"/>
+      ${[0, 0.66, 1.33].map(d => `<g class="hoja" style="animation-delay:${d}s"><rect x="470" y="236" width="220" height="64" rx="3" fill="#fff" stroke="#CBD3E1" stroke-width="2"/><rect x="482" y="244" width="90" height="48" fill="#9CC9FF"/><rect x="584" y="244" width="94" height="48" fill="#FFD58A"/></g>`).join('')}
+      <rect x="440" y="330" width="280" height="20" rx="6" fill="#C3CBDA"/>
+      <rect x="380" y="300" width="360" height="30" rx="10" fill="#D5DBE6"/>`
+  },
+  {
+    nombre: 'Taller y producción', emoji: '🔨', color: '#A16207', lugar: '🛠️ Taller', equipo: 3,
+    resumen: 'Tres personas arman el anuario a mano: cortan el MDF, doblan el papel fotográfico, lo pegan y empastan.',
+    tareas: ['Cortar las tablas de MDF a la medida', 'Doblar el papel fotográfico', 'Pegar las hojas sobre el MDF', 'Empastar y armar el anuario', 'Control final y empaque'],
+    pasa: 'Entrega / despacho, con el anuario terminado y empacado.',
+    burbujas: ['Corto el MDF 🪚', 'Doblo el papel fotográfico 📄', 'Pego y prenso 🧴', '¡Anuario armado! 📕✨'],
+    burbujaPos: { left: '36%', top: '20%' },
+    escena: () => taller() + `
+      ${coloca(130, 385, 1, { L: { rot: -30 }, R: { cls: 'sierra', prop: P.sierra } })}
+      ${mesa(20, 230, 345)}
+      <rect x="40" y="327" width="160" height="18" rx="2" fill="#D9A066" stroke="#B07444" stroke-width="2"/><path d="M60 336 h120" stroke="#C48A52" stroke-width="2"/>
+      ${[0, .3, .6].map(d => `<circle class="polvo" style="animation-delay:${d}s" cx="190" cy="327" r="3" fill="#C98B55"/>`).join('')}
+      ${etiqueta(135, 392, 'Corte de MDF', '#A16207')}
+
+      ${coloca(400, 385, 1, { chica: true, pelo: '#4A2A14', L: { cls: 'doblaL' }, R: { cls: 'doblaR' } })}
+      ${mesa(285, 230, 345)}
+      <rect x="340" y="333" width="120" height="12" rx="2" fill="#fff" stroke="#CBD3E1" stroke-width="2"/>
+      <g class="dobla"><rect x="340" y="317" width="120" height="16" rx="2" fill="#9CC9FF" stroke="#7FAFE8" stroke-width="2"/></g>
+      ${etiqueta(400, 392, 'Doblado de papel', '#A16207')}
+
+      ${coloca(670, 385, 1, { pelo: '#2B1A10', L: { cls: 'brocha', rot: 30, prop: P.brocha }, R: { rot: -20 } })}
+      ${mesa(550, 230, 345)}
+      <rect x="600" y="325" width="120" height="20" rx="3" fill="#1F5FD8"/><rect x="606" y="329" width="108" height="12" fill="#fff"/>
+      <g class="prensa"><rect x="596" y="277" width="128" height="14" rx="4" fill="#5B6478"/></g>
+      <g class="pop4"><rect x="720" y="257" width="56" height="70" rx="6" fill="#004CB8"/><text x="748" y="297" text-anchor="middle" font-family="Baloo 2" font-weight="800" font-size="13" fill="#FFC72C">Selfie</text></g>
+      <path class="brillo" d="M778 243 l4 10 l10 4 l-10 4 l-4 10 l-4 -10 l-10 -4 l10 -4z" fill="#FFC72C"/>
+      ${etiqueta(665, 392, 'Pegado y empastado', '#A16207')}`
+  },
+  {
+    nombre: 'Entrega / despacho', emoji: '🚚', color: '#DC2626', lugar: '📦 Oficina o delivery',
+    resumen: 'Entrega el anuario terminado: recojo en oficina o delivery con costo según la distancia.',
+    tareas: ['Verificar el anuario y el pago completo', 'Coordinar con el papá la opción de entrega', 'Recojo en oficina: entregar y registrar', 'Delivery: calcular el costo por distancia y despachar', 'Confirmar la entrega con Postventa'],
+    pasa: '¡El papá recibe su anuario! 🎉',
+    burbujas: ['¡Su anuario está listo! 📕', '¿Recojo en oficina o delivery?', 'Delivery: el costo va según la distancia 🛵', '¡Entregado! Gracias por confiar en Selfie 💙'],
+    burbujaPos: { left: '3%', top: '6%' },
+    escena: () => oficina('#FDECEC') + `
+      <rect x="430" y="240" width="370" height="210" fill="#C9D3E1"/>
+      <rect x="430" y="330" width="370" height="60" fill="#5B6478"/>
+      <path d="M440 360 h40 M520 360 h40 M600 360 h40 M680 360 h40 M760 360 h40" stroke="#fff" stroke-width="5"/>
+      ${[[540, '5 km'], [640, '10 km'], [740, '20 km']].map(([x, t]) => `<g class="pin" style="animation-delay:${(x - 540) / 300}s"><path d="M${x} 320 c-16 -20 -16 -46 0 -46 c16 0 16 26 0 46z" fill="#DC2626"/><circle cx="${x}" cy="290" r="6" fill="#fff"/></g><text x="${x}" y="262" text-anchor="middle" font-family="Nunito" font-weight="800" font-size="14" fill="#1B2440">${t}</text>`).join('')}
+      <g class="moto"><g transform="translate(450,330)">
+        <circle class="rueda" cx="0" cy="34" r="16" fill="#1B2440" stroke="#5B6478" stroke-width="5" stroke-dasharray="8 4"/>
+        <circle class="rueda" cx="62" cy="34" r="16" fill="#1B2440" stroke="#5B6478" stroke-width="5" stroke-dasharray="8 4"/>
+        <path d="M0 30 L18 10 L50 10 L62 30Z" fill="#DC2626"/><rect x="-16" y="-14" width="34" height="30" rx="4" fill="#C98B55"/><text x="1" y="6" text-anchor="middle" font-size="14">📕</text>
+        <rect x="26" y="-22" width="20" height="32" rx="8" fill="#004CB8"/><circle cx="36" cy="-30" r="12" fill="#FFC72C"/><rect x="40" y="-34" width="10" height="8" rx="2" fill="#1B2440"/>
+      </g></g>
+      ${coloca(200, 405, 1.2, { L: { cls: 'entregaL' }, R: { cls: 'entregaR' },
+        medio: `<g class="caja"><rect x="-34" y="-30" width="68" height="56" rx="6" fill="#C98B55"/><path d="M-34 -10 h68 M0 -30 v56" stroke="#A0652F" stroke-width="3"/><text x="0" y="8" text-anchor="middle" font-family="Baloo 2" font-weight="800" font-size="13" fill="#fff">Selfie</text></g>` })}
+      <rect x="50" y="300" width="80" height="80" rx="8" fill="#fff" stroke="#DC2626" stroke-width="3"/>
+      <text x="90" y="330" text-anchor="middle" font-size="26">🏢</text><text x="90" y="356" text-anchor="middle" font-family="Nunito" font-weight="800" font-size="12" fill="#1B2440">Recojo</text><text x="90" y="371" text-anchor="middle" font-family="Nunito" font-weight="800" font-size="12" fill="#1B2440">en oficina</text>
+      ${etiqueta(520, 418, '🛵 Delivery', '#DC2626')}`
+  }
+];
+
+/* ===================== LÓGICA ===================== */
+const $ = s => document.querySelector(s);
+let actual = 0, reproduciendo = false, timerArea = null, timerBurbuja = null;
+
+function pintarPasos() {
+  $('#pasos').innerHTML = AREAS.map((a, i) =>
+    `<button class="paso ${i === actual ? 'on' : ''} ${i < actual ? 'hecho' : ''}" style="--c:${a.color}" data-i="${i}">
+       <span class="n">${i < actual ? '✓' : i + 1}</span>${a.emoji} ${a.nombre}</button>`).join('');
+  const on = $('#pasos .on'); if (on) on.scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' });
+}
+
+function soles(n) { return 'S/ ' + n.toFixed(2); }
+function costoDelivery(km) {
+  const t = CONFIG.delivery.find(t => km <= t.hastaKm);
+  return t ? t.precio : null;
+}
+
+function pintarInfo(a, i) {
+  let extra = '';
+  if (a.tipos) extra += `<div><b>Tipos de fotos del anuario</b><div class="tipos" style="margin-top:6px">${a.tipos.map(([e, t]) => `<div><span>${e}</span>${t}</div>`).join('')}</div></div>`;
+  if (a.nota) extra += `<div class="nota">${a.nota}</div>`;
+  if (a.equipo) extra += `<div class="nota" style="background:#FDF3E1;border-color:#A16207">👷 Esta área trabaja con ${a.equipo} personas.</div>`;
+  if (i === AREAS.length - 1) {
+    const max = CONFIG.delivery[CONFIG.delivery.length - 1].hastaKm;
+    extra += `<div class="calc">
+      <b>Calculadora de despacho</b>
+      <div class="ops">
+        <label class="op"><input type="radio" name="op" value="oficina" checked> 🏢 Oficina</label>
+        <label class="op"><input type="radio" name="op" value="delivery"> 🛵 Delivery</label>
+      </div>
+      <div id="kmBox" class="hidden">
+        <label for="km">Distancia al cliente: <b id="kmTxt">5 km</b></label>
+        <input type="range" id="km" min="1" max="${max + 10}" value="5">
+      </div>
+      <div class="total" id="total">Sin costo</div>
+      <small id="det">Recojo en ${CONFIG.oficina}.</small>
+      <div class="tarifas">Tarifas: ${CONFIG.delivery.map((t, k) => `${k ? (CONFIG.delivery[k - 1].hastaKm + 1) : 0}–${t.hastaKm} km ${soles(t.precio)}`).join(' · ')} · más de ${max} km: cotizar.<br>⚠️ Tarifas de ejemplo: actualízalas en CONFIG.</div>
+    </div>`;
+  }
+  $('#info').style.setProperty('--c', a.color);
+  $('#info').innerHTML = `
+    <div class="fase">Fase ${i + 1} de ${AREAS.length} · ${a.lugar}</div>
+    <h2>${a.emoji} ${a.nombre}</h2>
+    <p class="res">${a.resumen}</p>
+    <ul class="tareas">${a.tareas.map((t, k) => `<li style="animation-delay:${0.25 + k * 0.9}s">${t}</li>`).join('')}</ul>
+    ${extra}
+    <p class="pasa">➡️ Pasa a: <b>${a.pasa}</b></p>`;
+  if (i === AREAS.length - 1) iniciarCalc();
+}
+
+function iniciarCalc() {
+  const calc = () => {
+    const op = document.querySelector('input[name=op]:checked').value;
+    $('#kmBox').classList.toggle('hidden', op !== 'delivery');
+    if (op === 'oficina') { $('#total').textContent = 'Sin costo'; $('#det').textContent = 'Recojo en ' + CONFIG.oficina + '.'; return; }
+    const km = +$('#km').value; $('#kmTxt').textContent = km + ' km';
+    const c = costoDelivery(km);
+    $('#total').textContent = c === null ? 'Cotizar' : soles(c);
+    $('#det').textContent = c === null ? 'Distancia fuera de tarifa: cotizar con agencia o courier.' : 'Delivery a ' + km + ' km del local.';
+  };
+  document.querySelectorAll('input[name=op]').forEach(r => r.addEventListener('change', calc));
+  $('#km').addEventListener('input', calc);
+}
+
+function pintarEscena(a) {
+  $('#svgWrap').innerHTML = `<svg viewBox="0 0 800 450" role="img" aria-label="Animación del área de ${a.nombre}">${a.escena()}</svg>`;
+  $('#lugar').textContent = a.lugar;
+  $('#escena').style.setProperty('--c', a.color);
+  const b = $('#burbuja');
+  Object.assign(b.style, { left: a.burbujaPos.left, top: a.burbujaPos.top, borderColor: a.color });
+  let k = 0;
+  const mostrar = () => { b.textContent = a.burbujas[k % a.burbujas.length]; b.style.animation = 'none'; void b.offsetWidth; b.style.animation = ''; k++; };
+  clearInterval(timerBurbuja); mostrar();
+  timerBurbuja = setInterval(mostrar, 1500);
+}
+
+function ir(i) {
+  actual = (i + AREAS.length) % AREAS.length;
+  const a = AREAS[actual];
+  pintarPasos(); pintarEscena(a); pintarInfo(a, actual);
+  const barra = $('#barra');
+  barra.className = ''; void barra.offsetWidth;
+  clearTimeout(timerArea);
+  if (reproduciendo) {
+    barra.style.setProperty('--dur', CONFIG.segundosPorArea + 's');
+    barra.className = 'run';
+    timerArea = setTimeout(() => {
+      if (actual === AREAS.length - 1) { pausar(); return; }
+      ir(actual + 1);
+    }, CONFIG.segundosPorArea * 1000);
+  }
+}
+
+function reproducir() { reproduciendo = true; $('#play').textContent = '⏸ Pausar'; ir(actual); }
+function pausar() { reproduciendo = false; $('#play').textContent = '▶ Reproducir'; clearTimeout(timerArea); $('#barra').className = ''; }
+
+$('#pasos').addEventListener('click', e => { const p = e.target.closest('.paso'); if (p) ir(+p.dataset.i); });
+$('#ant').onclick = () => ir(actual - 1);
+$('#sig').onclick = () => ir(actual + 1);
+$('#play').onclick = () => reproduciendo ? pausar() : reproducir();
+$('#verTour').onclick = () => { actual = 0; reproducir(); $('#escena').scrollIntoView({ behavior: 'smooth', block: 'center' }); };
+$('#irInicio').onclick = () => { pausar(); ir(0); $('#escena').scrollIntoView({ behavior: 'smooth', block: 'center' }); };
+document.addEventListener('keydown', e => {
+  if ($('#app').classList.contains('hidden')) return;
+  if (e.key === 'ArrowRight') ir(actual + 1);
+  if (e.key === 'ArrowLeft') ir(actual - 1);
+});
+
+/* ===================== ACCESO ===================== */
+// Nota: es un filtro simple en el navegador para que la app no la vea cualquiera.
+// La web es estática y pública: para privacidad real usa un hosting con login (ver README).
+async function sha256(txt) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(txt));
+  return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join('');
+}
+function abrirApp() {
+  $('#gate').classList.add('hidden'); $('#app').classList.remove('hidden'); ir(0);
+}
+$('#gateForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  let ok = false;
+  try { ok = (await sha256($('#clave').value.trim())) === CONFIG.claveHash; } catch (_) {}
+  if (ok) {
+    try { sessionStorage.setItem('selfieEquipo', CONFIG.claveHash); } catch (_) {}
+    abrirApp();
+  } else {
+    $('#gateErr').textContent = 'Clave incorrecta. Pídela a tu coordinador.';
+    const c = $('#gateCard'); c.classList.remove('shake'); void c.offsetWidth; c.classList.add('shake');
+  }
+});
+$('#salir').onclick = () => {
+  try { sessionStorage.removeItem('selfieEquipo'); } catch (_) {}
+  pausar(); clearInterval(timerBurbuja);
+  $('#app').classList.add('hidden'); $('#gate').classList.remove('hidden'); $('#clave').value = '';
+};
+try { if (sessionStorage.getItem('selfieEquipo') === CONFIG.claveHash) abrirApp(); } catch (_) {}
+</script>
+</body>
+</html>
