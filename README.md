@@ -35,13 +35,17 @@ python3 -m http.server 8000   # y abrir http://localhost:8000
 ```
 
 ## App interna del equipo: Ruta del Anuario (`/equipo/`)
-Animación con los personajes de Selfie Studio que explica, área por área, cómo se hace un anuario:
-Ventas → Administración → Fotografía (exterior, tipos de fotos con toga) → Edición → Postventa → Impresión → Taller y producción (3 personas) → Entrega / despacho (oficina o delivery con costo por distancia).
+App para iPhone (15, 16, 17) en 3D con los personajes de Selfie Studio sobre fondo blanco. Explica área por área cómo se hace un anuario:
+Ventas → Administración → Fotografía (exterior, toga y birrete) → Edición → Postventa → Impresión → Taller (3 personas) → Entrega (oficina o delivery por distancia).
 
-- Dirección: `https://selfieanuarios.com/equipo/` (no aparece en la web pública, tiene `noindex` y está bloqueada en `robots.txt`).
+- Cada personaje hace su acción en 5 segundos, con 1 o 2 herramientas. Se gira con el dedo (deslizar a los lados).
+- "Comenzar" reproduce todas las áreas seguidas; "Ver detalles" abre las tareas, los tipos de fotos y la calculadora de delivery.
+- Instalar en el iPhone: abrir `https://selfieanuarios.com/equipo/` en Safari → Compartir → "Agregar a pantalla de inicio". Se abre a pantalla completa como una app.
+- En computadora se muestra dentro de un marco de iPhone.
+- 3D hecho con Three.js (copiado en `equipo/vendor/`, licencia MIT), no necesita internet para el 3D.
 - Clave por defecto: `selfie2026`. Para cambiarla, genera el hash y pégalo en `CONFIG.claveHash` de `equipo/index.html`:
   ```bash
   printf 'NUEVA_CLAVE' | sha256sum
   ```
-- Tarifas de delivery: edítalas en `CONFIG.delivery` (las actuales son de ejemplo).
-- Importante: la clave es un filtro simple en el navegador. Como el sitio y el repositorio son públicos, quien conozca el enlace al código puede leerlo. Para privacidad real, publica `/equipo/` detrás de un login (por ejemplo Cloudflare Access o Netlify con contraseña) o mantén el repositorio privado.
+- Duración de la acción y tarifas de delivery: `CONFIG.accion` y `CONFIG.delivery` (las tarifas actuales son de ejemplo).
+- Importante: la clave es un filtro simple en el navegador. Como el sitio y el repositorio son públicos, quien conozca el código puede leerlo. Para privacidad real, publica `/equipo/` detrás de un login (por ejemplo Cloudflare Access) o mantén el repositorio privado.
