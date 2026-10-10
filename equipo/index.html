@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="es-PE">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<title>Ruta del Anuario · Selfie</title>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Ruta Selfie">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" href="icon-192.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --azul:#0A5BD8; --tinta:#0B1220; --gris:#6B7280; --gris2:#9CA3AF; --linea:#ECEEF2;
+  --fondo:#F5F6F8; --c:#0A5BD8;
+  --top:env(safe-area-inset-top,0px); --bot:env(safe-area-inset-bottom,0px);
+  --font:-apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text','Inter','Helvetica Neue',Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;overflow:hidden;background:#fff;color:var(--tinta);font-family:var(--font);-webkit-font-smoothing:antialiased;overscroll-behavior:none}
+button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
+.hidden{display:none!important}
+
+/* ---------- Marco de iPhone en computadora; pantalla completa en el teléfono ---------- */
+.desk{min-height:100%;display:grid;place-items:center}
+.device{position:relative;width:100vw;height:100dvh;background:#fff;overflow:hidden;overflow:clip}
+.statusbar{display:none}
+@media (min-width:560px){
+  html,body{background:radial-gradient(circle at 50% 0%,#FFFFFF 0,#EEF1F6 60%)}
+  .desk{padding:28px}
+  .device{width:393px;height:852px;border-radius:58px;box-shadow:0 0 0 11px #0B0B0F,0 0 0 13px #2A2B31,0 40px 90px rgba(10,20,40,.28)}
+  .statusbar{display:flex;position:absolute;z-index:50;top:0;left:0;right:0;height:54px;padding:18px 34px 0 46px;justify-content:space-between;font-weight:700;font-size:16px;pointer-events:none}
+  .statusbar .island{position:absolute;left:50%;top:11px;transform:translateX(-50%);width:124px;height:36px;border-radius:20px;background:#000}
+  .statusbar .ico{display:flex;gap:6px;align-items:center}
+  .device{--top:54px;--bot:24px}
+}
+
+.screen{position:absolute;inset:0;display:flex;flex-direction:column;background:#fff;transition:opacity .45s ease,transform .45s cubic-bezier(.2,.8,.2,1)}
+.screen.off{opacity:0;transform:scale(1.03);pointer-events:none;visibility:hidden;transition:opacity .45s,transform .45s,visibility 0s .45s}
+
+/* ---------- Acceso ---------- */
+#gate{padding:calc(var(--top) + 24px) 28px calc(var(--bot) + 24px);justify-content:center;text-align:center}
+#gate img{width:210px;margin:0 auto 10px;animation:flota 3.2s ease-in-out infinite}
+@keyframes flota{50%{transform:translateY(-8px)}}
+#gate h1{font-size:30px;font-weight:800;letter-spacing:-.02em}
+#gate p{color:var(--gris);margin:6px 0 26px;font-size:15px}
+.campo{width:100%;height:54px;border-radius:16px;background:var(--fondo);border:1.5px solid transparent;padding:0 18px;font:inherit;font-size:17px;text-align:center;outline:none;transition:border .2s}
+.campo:focus{border-color:var(--azul);background:#fff}
+.pill{height:54px;border-radius:18px;background:var(--tinta);color:#fff;font-weight:700;font-size:17px;width:100%;margin-top:12px;transition:transform .15s}
+.pill:active{transform:scale(.97)}
+.pill.azul{background:var(--azul)}
+.pill.claro{background:var(--fondo);color:var(--tinta)}
+.err{color:#E5484D;font-weight:600;font-size:14px;height:22px;margin-top:10px}
+.shake{animation:shake .4s}
+@keyframes shake{25%{transform:translateX(-10px)}50%{transform:translateX(10px)}75%{transform:translateX(-5px)}}
+.legal{position:absolute;left:0;right:0;bottom:calc(var(--bot) + 14px);font-size:12px;color:var(--gris2)}
+
+/* ---------- Intro ---------- */
+#intro{padding:calc(var(--top) + 12px) 24px calc(var(--bot) + 20px)}
+#intro .marca{display:flex;align-items:center;justify-content:space-between}
+#intro .marca img{height:30px}
+.tag{font-size:12px;font-weight:700;padding:6px 10px;border-radius:99px;background:var(--fondo);color:var(--gris)}
+#intro .hero{flex:1;display:flex;flex-direction:column;justify-content:center;text-align:center}
+#intro .hero img{width:250px;margin:0 auto;animation:flota 3.2s ease-in-out infinite}
+#intro h1{font-size:38px;font-weight:800;letter-spacing:-.035em;line-height:1.02;margin-top:14px}
+#intro p{color:var(--gris);font-size:16px;margin-top:10px;line-height:1.45}
+.mini-ruta{display:flex;justify-content:center;gap:6px;margin-top:18px;flex-wrap:wrap}
+.mini-ruta span{width:34px;height:34px;border-radius:12px;background:var(--fondo);display:grid;place-items:center;font-size:17px}
+
+/* ---------- Pantalla de área ---------- */
+#area{padding-top:calc(var(--top) + 6px)}
+.stories{display:flex;gap:4px;padding:0 16px}
+.stories i{flex:1;height:3px;border-radius:3px;background:var(--linea);overflow:hidden}
+.stories i b{display:block;height:100%;width:0;background:var(--tinta);border-radius:3px}
+.cab{display:flex;align-items:flex-start;gap:10px;padding:14px 20px 0}
+.cab .tx{flex:1;min-width:0}
+.cab .fase{font-size:13px;font-weight:600;color:var(--gris);display:flex;align-items:center;gap:6px}
+.cab .fase .dot{width:8px;height:8px;border-radius:50%;background:var(--c)}
+.cab h2{font-size:32px;font-weight:800;letter-spacing:-.03em;line-height:1.05;margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.redondo{width:42px;height:42px;border-radius:50%;background:var(--fondo);display:grid;place-items:center;flex:0 0 auto;transition:transform .15s}
+.redondo:active{transform:scale(.92)}
+.redondo svg{width:20px;height:20px}
+
+.stage{position:relative;flex:1;min-height:0;touch-action:none}
+.stage canvas{position:absolute;inset:0;width:100%!important;height:100%!important;display:block;outline:none}
+.burbuja{position:absolute;left:50%;top:10px;transform:translateX(-50%);max-width:86%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  background:rgba(255,255,255,.82);-webkit-backdrop-filter:blur(18px) saturate(1.6);backdrop-filter:blur(18px) saturate(1.6);
+  border:1px solid rgba(15,23,42,.06);box-shadow:0 10px 30px rgba(15,23,42,.10);border-radius:99px;padding:10px 16px;font-weight:700;font-size:15px;pointer-events:none}
+.burbuja:empty{display:none}
+.burbuja.anim{animation:burb .45s cubic-bezier(.2,1.4,.4,1)}
+@keyframes burb{from{opacity:0;transform:translate(-50%,8px) scale(.9)}to{opacity:1;transform:translate(-50%,0) scale(1)}}
+.hint{position:absolute;left:50%;bottom:12px;transform:translateX(-50%);display:flex;align-items:center;gap:8px;padding:8px 14px;border-radius:99px;background:rgba(11,18,32,.86);color:#fff;font-size:13px;font-weight:600;pointer-events:none;transition:opacity .5s;white-space:nowrap}
+.hint svg{width:18px;height:18px;animation:mano 1.6s ease-in-out infinite}
+@keyframes mano{0%,100%{transform:translateX(-6px)}50%{transform:translateX(6px)}}
+.repetir{position:absolute;right:16px;bottom:12px;height:36px;padding:0 12px;border-radius:99px;background:var(--fondo);font-size:13px;font-weight:700;display:flex;align-items:center;gap:6px;opacity:0;transition:opacity .3s;pointer-events:none}
+.repetir.on{opacity:1;pointer-events:auto}
+.cargando{position:absolute;inset:0;display:grid;place-items:center;color:var(--gris2);font-size:14px;font-weight:600}
+
+.panel{padding:6px 20px calc(var(--bot) + 14px)}
+.panel .res{font-size:15px;color:#374151;line-height:1.4;min-height:42px}
+.herr{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.herr span{font-size:13px;font-weight:600;padding:7px 11px;border-radius:12px;background:var(--fondo)}
+.herr span.c{background:color-mix(in srgb,var(--c) 12%,#fff);color:color-mix(in srgb,var(--c) 80%,#000)}
+.ctrl{display:flex;align-items:center;gap:10px;margin-top:14px}
+.ctrl .detalle{flex:1;height:52px;border-radius:18px;background:var(--tinta);color:#fff;font-weight:700;font-size:16px;transition:transform .15s}
+.ctrl .detalle:active{transform:scale(.97)}
+.ctrl .redondo{width:52px;height:52px}
+
+/* ---------- Hojas (bottom sheets) ---------- */
+.velo{position:absolute;inset:0;background:rgba(11,18,32,.28);opacity:0;pointer-events:none;transition:opacity .35s;z-index:20}
+.velo.on{opacity:1;pointer-events:auto}
+.hoja{position:absolute;left:0;right:0;bottom:0;z-index:21;max-height:86%;background:#fff;border-radius:30px 30px 0 0;box-shadow:0 -20px 60px rgba(11,18,32,.18);
+  transform:translateY(105%);visibility:hidden;transition:transform .45s cubic-bezier(.2,.9,.2,1),visibility 0s .45s;display:flex;flex-direction:column}
+.hoja.on{transform:none;visibility:visible;transition:transform .45s cubic-bezier(.2,.9,.2,1)}
+.hoja .grab{width:40px;height:5px;border-radius:5px;background:#D9DCE1;margin:10px auto 4px;flex:0 0 auto}
+.hoja .cont{overflow-y:auto;padding:8px 20px calc(var(--bot) + 20px);-webkit-overflow-scrolling:touch}
+.hoja h3{font-size:24px;font-weight:800;letter-spacing:-.02em}
+.hoja .sub{color:var(--gris);font-size:14px;margin:4px 0 14px}
+.lista{list-style:none;display:grid;gap:2px;background:var(--fondo);border-radius:18px;padding:6px}
+.lista li{display:flex;gap:12px;align-items:flex-start;padding:11px 10px;font-size:15px;font-weight:500;line-height:1.35}
+.lista li+li{border-top:1px solid #E7E9ED}
+.lista li i{flex:0 0 24px;height:24px;border-radius:8px;background:var(--c);color:#fff;font-style:normal;font-size:12px;font-weight:800;display:grid;place-items:center}
+.bloque{margin-top:14px}
+.bloque b.t{display:block;font-size:13px;color:var(--gris);font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin:0 0 8px 4px}
+.nota{background:#FFF8E6;border-radius:16px;padding:12px 14px;font-size:14px;font-weight:600;line-height:1.4}
+.tipos{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.tipos div{background:var(--fondo);border-radius:16px;padding:12px;font-size:13px;font-weight:600;line-height:1.3}
+.tipos div span{display:block;font-size:22px;margin-bottom:4px}
+.pasa{display:flex;gap:10px;align-items:center;background:var(--fondo);border-radius:16px;padding:12px 14px;font-size:14px;font-weight:600}
+.seg{display:grid;grid-template-columns:1fr 1fr;background:var(--fondo);border-radius:14px;padding:3px}
+.seg button{height:38px;border-radius:11px;font-weight:700;font-size:14px;color:var(--gris)}
+.seg button.on{background:#fff;color:var(--tinta);box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.precio{font-size:40px;font-weight:800;letter-spacing:-.03em;margin:12px 0 2px}
+.calc input[type=range]{width:100%;accent-color:var(--tinta);margin-top:10px}
+.calc small{display:block;color:var(--gris);font-size:13px;line-height:1.4}
+.grid-areas{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.grid-areas button{background:var(--fondo);border-radius:20px;padding:14px;text-align:left;display:flex;flex-direction:column;gap:6px;transition:transform .15s;border:2px solid transparent}
+.grid-areas button:active{transform:scale(.97)}
+.grid-areas button.on{border-color:var(--tinta);background:#fff}
+.grid-areas .e{font-size:26px}
+.grid-areas .n{font-size:12px;color:var(--gris);font-weight:700}
+.grid-areas .t{font-size:15px;font-weight:700;line-height:1.2}
+.salir{margin-top:16px;width:100%;height:48px;border-radius:16px;background:var(--fondo);font-weight:700;color:#E5484D}
+</style>
+<script type="importmap">{ "imports": { "three": "./vendor/three.module.min.js" } }</script>
+</head>
+<body>
+<div class="desk"><div class="device" id="device">
+  <div class="statusbar"><span>9:41</span><span class="island"></span><span class="ico">
+    <svg width="18" height="12" viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" rx="1" fill="#000"/><rect x="5" y="5" width="3" height="7" rx="1" fill="#000"/><rect x="10" y="2.5" width="3" height="9.5" rx="1" fill="#000"/><rect x="15" y="0" width="3" height="12" rx="1" fill="#000"/></svg>
+    <svg width="26" height="12" viewBox="0 0 26 12"><rect x=".5" y=".5" width="22" height="11" rx="3.5" fill="none" stroke="#000" opacity=".4"/><rect x="2" y="2" width="19" height="8" rx="2" fill="#000"/><rect x="24" y="4" width="2" height="4" rx="1" fill="#000" opacity=".4"/></svg>
+  </span></div>
+
+  <!-- ACCESO -->
+  <section class="screen" id="gate">
+    <img src="../img/equipo-mascotas.webp" alt="Personajes Selfie Studio">
+    <h1>Ruta del Anuario</h1>
+    <p>App interna del equipo Selfie Studio</p>
+    <form id="gateForm" autocomplete="off">
+      <input class="campo" id="clave" type="password" placeholder="Clave del equipo" aria-label="Clave del equipo" required>
+      <button class="pill" type="submit">Entrar</button>
+      <div class="err" id="gateErr" role="alert"></div>
+    </form>
+    <div class="legal">🔒 Solo para trabajadores · No compartir</div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="screen off" id="intro">
+    <div class="marca"><img src="../img/logo-selfie.webp" alt="Selfie"><span class="tag">Equipo interno</span></div>
+    <div class="hero">
+      <img src="../img/equipo-mascotas.webp" alt="">
+      <h1>Así se hace<br>un anuario Selfie</h1>
+      <p>8 áreas · un trabajador en cada una.<br>Gira a cada personaje con tu dedo.</p>
+      <div class="mini-ruta" id="miniRuta"></div>
+    </div>
+    <button class="pill azul" id="comenzar">Comenzar</button>
+    <button class="pill claro" id="elegir">Elegir un área</button>
+  </section>
+
+  <!-- ÁREA -->
+  <section class="screen off" id="area">
+    <div class="stories" id="stories"></div>
+    <div class="cab">
+      <div class="tx"><div class="fase"><span class="dot"></span><span id="fase"></span></div><h2 id="titulo"></h2></div>
+      <button class="redondo" id="menu" aria-label="Todas las áreas"><svg viewBox="0 0 20 20"><rect x="2" y="2" width="6.5" height="6.5" rx="2" fill="#0B1220"/><rect x="11.5" y="2" width="6.5" height="6.5" rx="2" fill="#0B1220"/><rect x="2" y="11.5" width="6.5" height="6.5" rx="2" fill="#0B1220"/><rect x="11.5" y="11.5" width="6.5" height="6.5" rx="2" fill="#0B1220"/></svg></button>
+    </div>
+    <div class="stage" id="stage">
+      <div class="cargando" id="cargando">Cargando 3D…</div>
+      <div class="burbuja" id="burbuja"></div>
+      <div class="hint" id="hint"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M9 11V5a1.5 1.5 0 0 1 3 0v5m0-1a1.5 1.5 0 0 1 3 0v2m0-1a1.5 1.5 0 0 1 3 0v4a6 6 0 0 1-6 6h-1a6 6 0 0 1-5-2.7L3.5 14a1.5 1.5 0 0 1 2.4-1.8L9 15"/></svg>Desliza para girar</div>
+      <button class="repetir" id="repetir">↺ Repetir</button>
+    </div>
+    <div class="panel">
+      <p class="res" id="resumen"></p>
+      <div class="herr" id="herr"></div>
+      <div class="ctrl">
+        <button class="redondo" id="ant" aria-label="Anterior"><svg viewBox="0 0 20 20"><path d="M12.5 4 6.5 10l6 6" stroke="#0B1220" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button class="detalle" id="verDetalle">Ver detalles</button>
+        <button class="redondo" id="play" aria-label="Reproducir"></button>
+        <button class="redondo" id="sig" aria-label="Siguiente"><svg viewBox="0 0 20 20"><path d="m7.5 4 6 6-6 6" stroke="#0B1220" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+    </div>
+  </section>
+
+  <div class="velo" id="velo"></div>
+  <div class="hoja" id="hojaDetalle"><div class="grab"></div><div class="cont" id="detalle"></div></div>
+  <div class="hoja" id="hojaMenu"><div class="grab"></div><div class="cont">
+    <h3>Todas las áreas</h3><p class="sub">Toca un área para ver su animación.</p>
+    <div class="grid-areas" id="gridAreas"></div>
+    <button class="salir" id="salir">Cerrar sesión</button>
+  </div></div>
+</div></div>
+
+<script type="module">
+import * as THREE from 'three';
+import { RoomEnvironment } from './vendor/RoomEnvironment.js';
+import { RoundedBoxGeometry } from './vendor/RoundedBoxGeometry.js';
+
+/* ===================== CONFIGURACIÓN ===================== */
+const CONFIG = {
+  // SHA-256 de la clave del equipo (clave por defecto: selfie2026). Ver README para cambiarla.
+  claveHash: 'c27acea25e1ad09c64eee500645f6dab440ed4415f786cf520b191aabe790135',
+  accion: 5,            // segundos que dura la acción de cada personaje
+  pausa: 0.8,           // segundos extra antes de pasar a la siguiente área
+  // Tarifas de delivery por distancia (EJEMPLO: cambiar por las reales).
+  delivery: [ { hastaKm: 5, precio: 10 }, { hastaKm: 10, precio: 15 }, { hastaKm: 20, precio: 20 }, { hastaKm: 35, precio: 30 } ],
+  oficina: 'Av. José Gálvez Barrenechea 1051, Of. 103, San Borja'
+};
+
+/* ===================== CONTENIDO ===================== */
+const AREAS = [
+  { nombre: 'Ventas', emoji: '📞', color: '#0A5BD8', lugar: 'Oficina',
+    resumen: 'Llama a los clientes y se mantiene en contacto hasta que reservan.',
+    herramientas: ['🎧 Audífonos', '📱 Tablet'],
+    burbujas: ['¡Hola! Le llamo de Selfie 👋', '¿Su promoción ya tiene anuario?', '¡Listo, reserva agendada! ✅'],
+    tareas: ['Llamar a directores, delegados y papás', 'Presentar paquetes y precios de preventa', 'Enviar la información por WhatsApp', 'Agendar la cita o visita', 'Hacer seguimiento hasta la reserva'],
+    pasa: 'Administración, con los datos del cliente.' },
+  { nombre: 'Administración', emoji: '📝', color: '#7C3AED', lugar: 'Oficina',
+    resumen: 'Genera los contratos y brinda la atención directa al cliente.',
+    herramientas: ['📋 Contrato', '🖊️ Lapicero'],
+    burbujas: ['Bienvenidos, revisemos su paquete', 'Firmamos el contrato ✍️', '¡Reserva confirmada! 🎉'],
+    tareas: ['Atención directa a papás y delegados', 'Generar el contrato: paquete, alumnos y fechas', 'Registrar la reserva y los pagos', 'Entregar comprobantes y cronograma', 'Programar la sesión con Fotografía'],
+    pasa: 'Fotografía, con fecha y lugar de la sesión.' },
+  { nombre: 'Fotografía', emoji: '📸', color: '#F97316', lugar: 'Exterior · fuera de oficina',
+    resumen: 'Sale a exteriores y hace la sesión de fotos de cada alumno, con toga incluida.',
+    herramientas: ['📷 Cámara', '🎓 Toga y birrete'],
+    burbujas: ['¡Sonríe! 📸', 'Ahora con toga y birrete 🎓', '¡Levanta tu diploma! 📜'],
+    tareas: ['Coordinar locación, hora y luz natural', 'Llevar togas, birretes y diplomas', 'Tomar todas las fotos de la lista por alumno', 'Respaldar las fotos el mismo día', 'Enviar el material a Edición'],
+    tipos: [['🎓', 'Individual con toga y birrete'], ['🌳', 'Individual en exterior'], ['👨‍👩‍👧', 'Familiar con mamá y papá'], ['👫', 'Grupal del aula'], ['🧩', 'Collage con amigos'], ['📜', 'Con diploma']],
+    pasa: 'Edición, con las fotos respaldadas por alumno.' },
+  { nombre: 'Edición', emoji: '🎨', color: '#DB2777', lugar: 'Oficina',
+    resumen: 'Edita las fotos y arma las plantillas del anuario. Aquí es donde más tiempo se va.',
+    herramientas: ['🖥️ Monitor', '✏️ Lápiz digital'],
+    burbujas: ['Retoque de color y luz ✨', 'Armando la plantilla 📖', '¡Boceto digital listo! ✅'],
+    tareas: ['Seleccionar las mejores fotos de cada alumno', 'Retocar color, luz, piel y fondos', 'Diseñar las páginas con las plantillas', 'Armar el boceto digital por alumno', 'Aplicar las correcciones de los papás'],
+    nota: '⏱️ Es la etapa más larga del proceso: planifica bien los tiempos.',
+    pasa: 'Postventa, con el boceto digital listo para revisión.' },
+  { nombre: 'Postventa', emoji: '💬', color: '#0891B2', lugar: 'Oficina · WhatsApp',
+    resumen: 'Acompaña al papá en todo el proceso: dudas, avances y seguimiento hasta la entrega.',
+    herramientas: ['🎧 Audífonos', '📱 Celular'],
+    burbujas: ['Su anuario va en edición 🎨', 'Le envío su boceto digital 📲', '¡Aprobado! Pasa a impresión 🖨️'],
+    tareas: ['Resolver las dudas de los papás', 'Comunicar el avance del anuario', 'Enviar el boceto digital para aprobación', 'Pasar las correcciones a Edición', 'Acompañar hasta la impresión y la entrega'],
+    nota: '⭐ Área fundamental: es la voz de Selfie con el papá durante todo el proceso.',
+    pasa: 'Impresión, cuando el papá aprueba el boceto.' },
+  { nombre: 'Impresión', emoji: '🖨️', color: '#16A34A', lugar: 'Área de impresión',
+    resumen: 'Con el boceto digital aprobado, imprime las páginas en papel fotográfico.',
+    herramientas: ['🖨️ Impresora', '📄 Hoja impresa'],
+    burbujas: ['Boceto aprobado ✅', 'Imprimiendo en papel fotográfico', 'Colores revisados 👌'],
+    tareas: ['Imprimir solo bocetos aprobados', 'Revisar resolución, colores y orden', 'Imprimir en papel fotográfico', 'Control de calidad de cada hoja', 'Pasar las hojas al Taller'],
+    pasa: 'Taller y producción, con las hojas revisadas.' },
+  { nombre: 'Taller', emoji: '🔨', color: '#B45309', lugar: 'Taller · 3 personas',
+    resumen: 'Tres personas arman el anuario: cortan MDF, doblan el papel fotográfico, pegan y empastan.',
+    herramientas: ['🪚 Sierra y MDF', '📄 Papel fotográfico', '🖌️ Cola y empaste'],
+    burbujas: ['Corte de MDF 🪚', 'Doblado y pegado 📄', '¡Anuario armado! 📕✨'],
+    tareas: ['Cortar las tablas de MDF a la medida', 'Doblar el papel fotográfico', 'Pegar las hojas sobre el MDF', 'Empastar y armar el anuario', 'Control final y empaque'],
+    pasa: 'Entrega / despacho, con el anuario empacado.' },
+  { nombre: 'Entrega', emoji: '🛵', color: '#E11D48', lugar: 'Oficina o delivery',
+    resumen: 'Entrega el anuario: recojo en oficina o delivery con costo según la distancia.',
+    herramientas: ['📦 Anuario empacado', '🛵 Moto delivery'],
+    burbujas: ['¡Su anuario está listo! 📕', 'Delivery según la distancia 🛵', '¡Entregado! Gracias 💙'],
+    tareas: ['Verificar el anuario y el pago completo', 'Coordinar la opción de entrega con el papá', 'Recojo en oficina: entregar y registrar', 'Delivery: calcular costo por distancia y despachar', 'Confirmar la entrega con Postventa'],
+    pasa: '¡El papá recibe su anuario! 🎉', calc: true }
+];
+
+/* ===================== UTILIDADES ===================== */
+const $ = s => document.querySelector(s);
+const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+const smooth = u => u * u * (3 - 2 * u);
+// interpolación por fotogramas clave: k(t, [[t0,v0],[t1,v1],...])
+function k(t, f) {
+  if (t <= f[0][0]) return f[0][1];
+  for (let i = 0; i < f.length - 1; i++) if (t <= f[i + 1][0]) {
+    const u = smooth((t - f[i][0]) / (f[i + 1][0] - f[i][0])); return f[i][1] + (f[i + 1][1] - f[i][1]) * u;
+  }
+  return f[f.length - 1][1];
+}
+const ventana = (t, a, b) => clamp((t - a) / (b - a), 0, 1);
+const pulso = (t, a, b) => (t > a && t < b) ? Math.sin(Math.PI * (t - a) / (b - a)) : 0;
+
+/* ===================== 3D: base ===================== */
+const stage = $('#stage');
+let renderer, scene, camera, flashLight, listo = false;
+const camPos = new THREE.Vector3(0, 2.7, 10), camLook = new THREE.Vector3(0, 1.6, 0);
+const camPosT = camPos.clone(), camLookT = camLook.clone();
+
+function lienzo(w, h, draw) {
+  const c = document.createElement('canvas'); c.width = w; c.height = h;
+  const x = c.getContext('2d'); draw(x, w, h);
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 4;
+  t.userData = { c, x }; return t;
+}
+function rr(x, X, Y, W, H, R) { x.beginPath(); x.roundRect(X, Y, W, H, R); }
+function texto(x, txt, cx, cy, maxW, size, peso = 800) {
+  do { x.font = `${peso} ${size}px -apple-system, Inter, Arial`; size -= 2; } while (x.measureText(txt).width > maxW && size > 10);
+  x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillText(txt, cx, cy);
+}
+
+const MAT = {}, GEO = {};
+const fis = (color, o = {}) => new THREE.MeshPhysicalMaterial({ color, roughness: .42, clearcoat: .4, clearcoatRoughness: .3, ...o });
+
+function mesh(geo, mat, pos, parent, sombra = true) {
+  const m = new THREE.Mesh(geo, mat); if (pos) m.position.set(...pos);
+  m.castShadow = sombra; m.receiveShadow = true; if (parent) parent.add(m); return m;
+}
+function rbox(w, h, d, mat, r, parent, pos) { return mesh(new RoundedBoxGeometry(w, h, d, 4, Math.min(r, Math.min(w, h, d) / 2 - .002)), mat, pos, parent); }
+
+function initMateriales() {
+  MAT.piel = fis(0xF5C29C, { roughness: .55, clearcoat: .15, sheen: .4, sheenColor: new THREE.Color(0xFFD9C0) });
+  MAT.polo = fis(0xFBFBFC, { roughness: .5, clearcoat: .25 });
+  MAT.pant = fis(0x1C1D22, { roughness: .55, clearcoat: .2 });
+  MAT.zap = fis(0x16161A, { roughness: .38, clearcoat: .8 });
+  MAT.pelo = fis(0x5A2E15, { roughness: .35, clearcoat: .8 });
+  MAT.pelo2 = fis(0x2A170B, { roughness: .35, clearcoat: .8 });
+  MAT.ojo = fis(0x0A0A0C, { roughness: .1, clearcoat: 1 });
+  MAT.brillo = new THREE.MeshBasicMaterial({ color: 0xffffff });
+  MAT.boca = fis(0x8A3B22, { roughness: .5 });
+  MAT.rubor = new THREE.MeshBasicMaterial({ color: 0xF59AA6, transparent: true, opacity: .55, depthWrite: false });
+  MAT.negro = fis(0x1D1E23, { roughness: .3, clearcoat: .7 });
+  MAT.gris = fis(0xE9ECF1, { roughness: .45, clearcoat: .3 });
+  MAT.blanco = fis(0xFFFFFF, { roughness: .4, clearcoat: .4 });
+  MAT.metal = fis(0xC9CED6, { roughness: .2, metalness: .9, clearcoat: .2 });
+  MAT.azul = fis(0x1F5FD8, { roughness: .35, clearcoat: .6 });
+  MAT.amarillo = fis(0xFFC72C, { roughness: .35, clearcoat: .6 });
+  MAT.rojo = fis(0xE5484D, { roughness: .35, clearcoat: .6 });
+  MAT.madera = fis(0xD8A46A, { roughness: .7, clearcoat: .1 });
+  MAT.carton = fis(0xC9925A, { roughness: .8, clearcoat: 0 });
+  MAT.vidrio = fis(0x18324F, { roughness: .05, clearcoat: 1, metalness: .2 });
+
+  GEO.zap = new THREE.SphereGeometry(.28, 32, 20);
+  GEO.pierna = new THREE.CapsuleGeometry(.24, .34, 8, 20);
+  GEO.torso = new THREE.CapsuleGeometry(.72, .45, 12, 40);
+  GEO.cabeza = new THREE.SphereGeometry(.86, 56, 40);
+  GEO.ojo = new THREE.SphereGeometry(.085, 24, 16);
+  GEO.punto = new THREE.SphereGeometry(.026, 12, 8);
+  GEO.ceja = new THREE.TorusGeometry(.1, .026, 10, 20, Math.PI * .7);
+  GEO.boca = new THREE.TorusGeometry(.075, .02, 10, 20, Math.PI);
+  GEO.manga = new THREE.SphereGeometry(.3, 28, 20);
+  GEO.brazo = new THREE.CapsuleGeometry(.14, .42, 8, 16);
+  GEO.mano = new THREE.SphereGeometry(.2, 28, 20);
+  GEO.bola = new THREE.SphereGeometry(1, 32, 24);
+  GEO.casco = new THREE.SphereGeometry(.9, 48, 32, 0, Math.PI * 2, 0, 1.25);
+  GEO.cuello = new RoundedBoxGeometry(.36, .08, .24, 3, .03);
+  GEO.sombra = new THREE.PlaneGeometry(1, 1);
+
+  // sombra de contacto suave
+  MAT.sombra = new THREE.MeshBasicMaterial({ transparent: true, depthWrite: false, opacity: .55, map: lienzo(256, 256, (x, w, h) => {
+    const g = x.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, w / 2);
+    g.addColorStop(0, 'rgba(15,23,42,.55)'); g.addColorStop(.5, 'rgba(15,23,42,.18)'); g.addColorStop(1, 'rgba(15,23,42,0)');
+    x.fillStyle = g; x.fillRect(0, 0, w, h);
+  }) });
+
+  // logo Selfie para el polo
+  const logoTex = lienzo(512, 200, (x) => {
+    x.fillStyle = '#FFC72C'; x.beginPath(); x.moveTo(60, 58); x.lineTo(118, 30); x.lineTo(176, 58); x.lineTo(118, 84); x.closePath(); x.fill();
+    x.fillRect(150, 58, 6, 34);
+    x.fillStyle = '#1F5FD8'; x.font = 'italic 800 118px "Baloo 2", "Arial Black", sans-serif'; x.textAlign = 'center';
+    x.fillText('Selfie', 270, 150);
+    x.strokeStyle = '#1F5FD8'; x.lineWidth = 9; x.lineCap = 'round'; x.beginPath(); x.moveTo(80, 176); x.quadraticCurveTo(270, 150, 470, 166); x.stroke();
+  });
+  MAT.logo = new THREE.MeshPhysicalMaterial({ map: logoTex, transparent: true, roughness: .5, clearcoat: .2, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -2 });
+  GEO.logo = new THREE.CylinderGeometry(.636, .636, .4, 40, 1, true, -.78, 1.56);
+}
+
+function sombraContacto(parent, w = 1.9, d = 1.4, x = 0, z = 0) {
+  const s = new THREE.Mesh(GEO.sombra, MAT.sombra); s.rotation.x = -Math.PI / 2; s.scale.set(w, d, 1); s.position.set(x, .005, z); parent.add(s); return s;
+}
+
+/* ===================== PERSONAJE estilo Selfie Studio ===================== */
+function persona(o = {}) {
+  const g = new THREE.Group(), body = new THREE.Group(); g.add(body);
+  const ropa = o.toga ? MAT.azul : MAT.polo;
+  const pelo = o.pelo || MAT.pelo;
+  sombraContacto(g);
+  for (const s of [-1, 1]) {
+    mesh(GEO.zap, MAT.zap, [s * .33, .15, .1], body).scale.set(1, .55, 1.35);
+    mesh(GEO.pierna, MAT.pant, [s * .3, .55, 0], body);
+  }
+  mesh(GEO.torso, ropa, [0, 1.27, 0], body).scale.set(1, .82, .86);
+  if (o.toga) {
+    mesh(new THREE.CylinderGeometry(.66, .84, .9, 40), MAT.azul, [0, .7, 0], body);
+    for (const s of [-1, 1]) { const b = mesh(new RoundedBoxGeometry(.16, .95, .05, 2, .02), MAT.amarillo, [s * .24, 1.3, .62], body); b.rotation.x = -.12; b.rotation.z = s * .08; }
+  } else {
+    for (const s of [-1, 1]) { const c = mesh(GEO.cuello, MAT.polo, [s * .17, 1.98, .42], body); c.rotation.set(-.5, 0, s * -.45); }
+    mesh(new RoundedBoxGeometry(.1, .2, .04, 2, .015), MAT.polo, [0, 1.86, .58], body);
+    const lg = new THREE.Group(); lg.position.set(0, 1.24, 0); lg.scale.set(1.13, 1, 1); body.add(lg);
+    mesh(GEO.logo, MAT.logo, null, lg, false);
+  }
+  // cabeza
+  const head = new THREE.Group(); head.position.set(0, 2.64, 0); body.add(head);
+  mesh(GEO.cabeza, MAT.piel, null, head).scale.set(1, 1.08, .95);
+  const ojos = new THREE.Group(); head.add(ojos);
+  for (const s of [-1, 1]) {
+    mesh(GEO.ojo, MAT.ojo, [s * .27, .04, .77], ojos, false).scale.set(1, 1.55, .55);
+    mesh(GEO.punto, MAT.brillo, [s * .27 + .03, .1, .815], ojos, false);
+    const c = mesh(GEO.ceja, pelo, [s * .27, .3, .74], head, false); c.rotation.set(-.25, 0, Math.PI * .15);
+    if (o.chica) {
+      const r = mesh(GEO.bola, MAT.rubor, [s * .47, -.17, .63], head, false); r.scale.set(.1, .06, .03); r.lookAt(r.position.clone().multiplyScalar(2));
+      const p = mesh(new THREE.CapsuleGeometry(.014, .07, 4, 6), MAT.ojo, [s * .36, .14, .73], head, false); p.rotation.z = s * -.9;
+    }
+  }
+  mesh(GEO.boca, MAT.boca, [0, -.25, .79], head, false).rotation.set(-.2, 0, Math.PI);
+  // pelo
+  const casco = mesh(GEO.casco, pelo, [0, .02, -.02], head); casco.scale.set(1.04, 1.1, 1.0); casco.rotation.x = o.chica ? -.38 : -.45;
+  if (o.chica) {
+    mesh(GEO.bola, pelo, [0, -.05, -.32], head).scale.set(.88, .92, .7);
+    for (const s of [-1, 1]) mesh(new THREE.CapsuleGeometry(.2, .62, 8, 16), pelo, [s * .8, -.12, -.08], head).rotation.z = s * .12;
+    const fl = mesh(GEO.bola, pelo, [-.2, .66, .46], head); fl.scale.set(.6, .2, .32); fl.rotation.set(-.6, 0, .35);
+    mesh(new THREE.CapsuleGeometry(.27, .7, 8, 16), pelo, [.66, .1, -.72], head).rotation.set(.5, 0, -.45);
+    mesh(GEO.bola, pelo, [.5, .55, -.62], head).scale.setScalar(.26);
+  } else if (!o.birrete) {
+    [[.12, .86, .42, .34], [-.3, .84, .32, .3], [.44, .74, .26, .27], [0, .96, 0, .38], [-.5, .66, .1, .25]].forEach(([x, y, z, r]) => mesh(GEO.bola, pelo, [x, y, z], head).scale.setScalar(r));
+  }
+  if (o.birrete) {
+    mesh(new THREE.CylinderGeometry(.55, .6, .28, 32), MAT.negro, [0, .86, -.02], head);
+    mesh(new RoundedBoxGeometry(1.15, .06, 1.15, 2, .02), MAT.negro, [0, 1.02, -.02], head).rotation.y = Math.PI / 4;
+    mesh(new THREE.CylinderGeometry(.018, .018, .5, 8), MAT.amarillo, [.62, .8, .2], head);
+    mesh(GEO.bola, MAT.amarillo, [.62, .55, .2], head).scale.setScalar(.06);
+  }
+  if (o.audifonos) {
+    mesh(new THREE.TorusGeometry(.98, .055, 14, 56, Math.PI), MAT.negro, [0, .02, 0], head);
+    for (const s of [-1, 1]) mesh(new THREE.CylinderGeometry(.2, .2, .16, 28), MAT.negro, [s * .92, 0, 0], head).rotation.z = Math.PI / 2;
+    const curva = new THREE.CatmullRomCurve3([new THREE.Vector3(.95, -.12, .1), new THREE.Vector3(.8, -.38, .52), new THREE.Vector3(.32, -.42, .8)]);
+    mesh(new THREE.TubeGeometry(curva, 20, .028, 8), MAT.negro, null, head);
+    mesh(GEO.bola, MAT.negro, [.3, -.42, .82], head).scale.setScalar(.07);
+  }
+  // brazos (pivote en el hombro)
+  const brazo = s => {
+    const p = new THREE.Group(); p.position.set(s * .78, 1.74, 0); body.add(p);
+    mesh(GEO.manga, ropa, [0, -.05, 0], p).scale.set(1, .9, 1);
+    mesh(GEO.brazo, MAT.piel, [0, -.44, 0], p);
+    const hand = new THREE.Group(); hand.position.set(0, -.8, 0); p.add(hand);
+    mesh(GEO.mano, MAT.piel, null, hand).scale.set(1, 1.08, .92);
+    p.rotation.z = s * .1;
+    return { p, hand };
+  };
+  return { g, body, head, ojos, L: brazo(-1), R: brazo(1), fase: Math.random() * 6 };
+}
+// respiración, parpadeo y cabeza viva
+function vida(P, g) {
+  const t = g + P.fase, s = Math.sin(t * 2.2);
+  P.body.position.y = s * .025;
+  P.body.scale.set(1 + s * .006, 1 - s * .006, 1);
+  P.ojos.scale.y = (t % 3.6) > 3.45 ? .12 : 1;
+  P.head.rotation.z = Math.sin(t * .9) * .035;
+}
+// brazos: x = hacia adelante (negativo), z = lateral (izquierdo negativo = afuera, derecho positivo = afuera)
+function brazos(P, lx, lz, rx, rz) { P.L.p.rotation.set(lx, 0, lz); P.R.p.rotation.set(rx, 0, rz); }
+
+/* ===================== sprites y utilería ===================== */
+function sprite(w, h, draw, escala = 1) {
+  const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: lienzo(w, h, draw), transparent: true, depthWrite: false }));
+  s.scale.set(escala * w / h, escala, 1); s.userData.base = s.scale.clone(); s.visible = false; return s;
+}
+function mostrar(s, v) { s.visible = v > .01; const b = s.userData.base; s.scale.set(b.x * v, b.y * v, 1); s.material.opacity = Math.min(1, v * 1.3); }
+const check = () => sprite(128, 128, (x) => {
+  x.fillStyle = '#16A34A'; x.beginPath(); x.arc(64, 64, 58, 0, Math.PI * 2); x.fill();
+  x.strokeStyle = '#fff'; x.lineWidth = 14; x.lineCap = 'round'; x.lineJoin = 'round'; x.beginPath(); x.moveTo(36, 66); x.lineTo(56, 86); x.lineTo(94, 44); x.stroke();
+}, .55);
+const chat = (txt, verde) => sprite(512, 130, (x, w, h) => {
+  x.shadowColor = 'rgba(15,23,42,.18)'; x.shadowBlur = 18; x.shadowOffsetY = 6;
+  x.fillStyle = verde ? '#DCF8C6' : '#FFFFFF'; rr(x, 14, 10, w - 28, h - 34, 40); x.fill(); x.shadowColor = 'transparent';
+  x.fillStyle = '#0B1220'; texto(x, txt, w / 2, (h - 24) / 2 + 10, w - 90, 46, 600);
+}, .42);
+const destello = () => sprite(128, 128, (x) => {
+  const g = x.createRadialGradient(64, 64, 0, 64, 64, 64); g.addColorStop(0, 'rgba(255,255,255,1)'); g.addColorStop(.3, 'rgba(255,250,220,.8)'); g.addColorStop(1, 'rgba(255,255,255,0)');
+  x.fillStyle = g; x.fillRect(0, 0, 128, 128);
+}, 1.6);
+const estrella = () => sprite(128, 128, (x) => {
+  x.fillStyle = '#FFC72C'; x.beginPath();
+  for (let i = 0; i < 8; i++) { const r = i % 2 ? 18 : 58, a = i * Math.PI / 4 - Math.PI / 2; x.lineTo(64 + Math.cos(a) * r, 64 + Math.sin(a) * r); }
+  x.closePath(); x.fill();
+}, .5);
+function fotoNino(x, X, Y, W, H, color = true, fondo = '#9CC9FF') {
+  x.fillStyle = color ? fondo : '#C9CCD2'; x.fillRect(X, Y, W, H);
+  const cx = X + W / 2;
+  x.fillStyle = color ? '#1F5FD8' : '#9EA2AA'; rr(x, cx - W * .28, Y + H * .62, W * .56, H * .38, W * .14); x.fill();
+  x.fillStyle = color ? '#F5C29C' : '#DADBDF'; x.beginPath(); x.arc(cx, Y + H * .45, W * .2, 0, Math.PI * 2); x.fill();
+  x.fillStyle = color ? '#1D1E23' : '#8E9198'; x.beginPath(); x.moveTo(cx - W * .3, Y + H * .27); x.lineTo(cx, Y + H * .17); x.lineTo(cx + W * .3, Y + H * .27); x.lineTo(cx, Y + H * .35); x.closePath(); x.fill();
+  if (color) { x.fillStyle = '#FFC72C'; x.beginPath(); x.moveTo(cx - W * .1, Y + H * .64); x.lineTo(cx, Y + H * .8); x.lineTo(cx + W * .1, Y + H * .64); x.fill(); }
+}
+const polaroid = (fondo, label) => sprite(220, 260, (x) => {
+  x.shadowColor = 'rgba(15,23,42,.2)'; x.shadowBlur = 16; x.shadowOffsetY = 6;
+  x.fillStyle = '#fff'; rr(x, 14, 10, 192, 236, 10); x.fill(); x.shadowColor = 'transparent';
+  fotoNino(x, 28, 24, 164, 160, true, fondo);
+  x.fillStyle = '#0B1220'; x.font = '700 22px -apple-system, Inter, Arial'; x.textAlign = 'center'; x.fillText(label, 110, 222);
+}, .85);
+function pantalla(w, h, tex, parent, pos) {
+  const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ map: tex, toneMapped: false }));
+  if (pos) m.position.set(...pos); parent.add(m); return m;
+}
+
+/* ===================== ESCENAS (cada acción dura 5 s) ===================== */
+const ESCENAS = [
+  // 1. VENTAS — audífonos + tablet
+  () => {
+    const G = new THREE.Group(); const P = persona({ chica: true, audifonos: true }); G.add(P.g);
+    const tex = lienzo(256, 360, (x, w, h) => {
+      const g = x.createLinearGradient(0, 0, 0, h); g.addColorStop(0, '#3B82F6'); g.addColorStop(1, '#1D4ED8'); x.fillStyle = g; x.fillRect(0, 0, w, h);
+      x.fillStyle = 'rgba(255,255,255,.95)'; for (let i = 0; i < 4; i++) { rr(x, 22, 40 + i * 74, w - 44, 56, 14); x.fill(); }
+      x.fillStyle = '#16A34A'; for (let i = 0; i < 4; i++) { x.beginPath(); x.arc(56, 68 + i * 74, 14, 0, 7); x.fill(); }
+      x.fillStyle = '#CBD5E1'; for (let i = 0; i < 4; i++) { rr(x, 82, 58 + i * 74, 120, 10, 5); x.fill(); rr(x, 82, 76 + i * 74, 80, 8, 4); x.fill(); }
+    });
+    const tab = new THREE.Group(); P.R.hand.add(tab);
+    rbox(.5, .7, .05, MAT.negro, .02, tab); pantalla(.44, .62, tex, tab, [0, 0, .027]);
+    const ondas = [0, 1].map(() => { const m = new THREE.Mesh(new THREE.TorusGeometry(.32, .025, 8, 40), new THREE.MeshBasicMaterial({ color: 0x0A5BD8, transparent: true })); m.position.set(-1.2, 2.64, .25); G.add(m); return m; });
+    const ok = check(); ok.position.set(1.0, 2.5, .9); G.add(ok);
+    return {
+      G, cam: { w: 3.6, y: 1.75 },
+      update(t, g) {
+        vida(P, g);
+        const wave = t < 2 ? Math.sin(t * 11) * .28 * ventana(t, .3, .6) : 0;
+        brazos(P, 0, k(t, [[0, -.1], [.4, -2.55], [1.8, -2.55], [2.3, -.12]]) + wave,
+          k(t, [[0, -1.05], [2.2, -1.05], [4, -1.15]]) + (t > 2.2 && t < 4 ? Math.sin(t * 16) * .05 : 0), .38);
+        tab.rotation.set(.7, -.35, 0); tab.position.set(0, -.22, .06);
+        P.head.rotation.x = k(t, [[0, 0], [2.2, 0], [2.6, .22], [3.9, .22], [4.3, 0]]);
+        P.g.rotation.y = k(t, [[0, 0], [2.2, -.12], [4.3, 0]]);
+        ondas.forEach((o, i) => { const u = ((t * 1.1 + i * .5) % 1); o.scale.setScalar(.6 + u * 1.4); o.material.opacity = t < 2.4 ? (1 - u) : 0; });
+        mostrar(ok, t > 4 ? smooth(ventana(t, 4, 4.35)) * (1 + .15 * pulso(t, 4, 4.5)) : 0);
+      }
+    };
+  },
+  // 2. ADMINISTRACIÓN — contrato + lapicero
+  () => {
+    const G = new THREE.Group(); const P = persona({}); G.add(P.g);
+    const tex = lienzo(300, 400, (x, w, h) => {
+      x.fillStyle = '#fff'; x.fillRect(0, 0, w, h);
+      x.fillStyle = '#7C3AED'; x.font = '800 34px -apple-system, Inter, Arial'; x.fillText('CONTRATO', 30, 60);
+      x.fillStyle = '#E2E8F0'; for (let i = 0; i < 8; i++) x.fillRect(30, 90 + i * 26, i % 3 === 2 ? 150 : 240, 10);
+      x.strokeStyle = '#94A3B8'; x.lineWidth = 3; x.beginPath(); x.moveTo(30, 340); x.lineTo(270, 340); x.stroke();
+    });
+    const tabla = new THREE.Group(); P.L.hand.add(tabla);
+    rbox(.66, .86, .04, MAT.madera, .015, tabla); pantalla(.58, .76, tex, tabla, [0, -.02, .024]);
+    rbox(.24, .08, .06, MAT.metal, .02, tabla, [0, .42, .03]);
+    const firma = new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3([[-.2, -.24], [-.12, -.18], [-.05, -.27], [.04, -.19], [.12, -.26], [.2, -.2]].map(([a, b]) => new THREE.Vector3(a, b, .03))), 40, .008, 6), new THREE.MeshBasicMaterial({ color: 0x1F5FD8 }));
+    tabla.add(firma);
+    const lap = new THREE.Group(); P.R.hand.add(lap);
+    mesh(new THREE.CylinderGeometry(.03, .03, .5, 16), MAT.azul, [0, .05, 0], lap); mesh(new THREE.ConeGeometry(.03, .08, 16), MAT.negro, [0, -.24, 0], lap).rotation.x = Math.PI;
+    const sello = sprite(360, 130, (x, w, h) => {
+      x.fillStyle = 'rgba(255,255,255,.9)'; rr(x, 8, 8, w - 16, h - 16, 24); x.fill();
+      x.strokeStyle = '#16A34A'; x.lineWidth = 10; rr(x, 8, 8, w - 16, h - 16, 24); x.stroke();
+      x.fillStyle = '#16A34A'; texto(x, 'FIRMADO ✓', w / 2, h / 2 + 4, w - 60, 62);
+    }, .32);
+    sello.position.set(-.3, 2.15, 1.4); G.add(sello);
+    return {
+      G, cam: { w: 3.6, y: 1.75 },
+      update(t, g) {
+        vida(P, g);
+        const esc = t > .3 && t < 2.8;
+        const alza = k(t, [[0, 0], [2.9, 0], [3.4, 1], [4.4, 1], [4.9, 0]]);
+        brazos(P, -1.15 - alza * .5, .42 - alza * .1, -1.0 + (esc ? Math.sin(t * 18) * .07 : 0), -.42 + (esc ? Math.sin(t * 9) * .1 : 0) + alza * .3);
+        tabla.rotation.set(.9 + alza * .5, .3, .15);
+        lap.rotation.set(.6, 0, -.3);
+        const dib = ventana(t, .3, 2.7); firma.geometry.setDrawRange(0, Math.floor(dib * firma.geometry.index.count / 3) * 3);
+        P.head.rotation.x = esc ? .25 + Math.sin(t * 6) * .03 : k(t, [[2.8, .25], [3.2, 0]]);
+        mostrar(sello, t > 3.2 ? smooth(ventana(t, 3.2, 3.5)) * (1 + .2 * pulso(t, 3.2, 3.7)) : 0);
+      }
+    };
+  },
+  // 3. FOTOGRAFÍA — cámara + alumno con toga y birrete
+  () => {
+    const G = new THREE.Group();
+    const P = persona({}); P.g.position.set(-.9, 0, 0); P.g.rotation.y = .42; G.add(P.g);
+    const N = persona({ toga: true, birrete: true }); N.g.position.set(1.2, 0, .3); N.g.scale.setScalar(.74); N.g.rotation.y = -.5; G.add(N.g);
+    const cam = new THREE.Group(); P.body.add(cam);
+    rbox(1.0, .6, .42, MAT.negro, .08, cam); rbox(.36, .16, .3, MAT.negro, .04, cam, [-.22, .36, 0]);
+    mesh(new THREE.CylinderGeometry(.22, .25, .34, 40), MAT.negro, [.08, 0, .36], cam).rotation.x = Math.PI / 2;
+    mesh(new THREE.CylinderGeometry(.16, .16, .02, 40), MAT.vidrio, [.08, 0, .54], cam).rotation.x = Math.PI / 2;
+    mesh(new THREE.TorusGeometry(.2, .02, 8, 40), MAT.metal, [.08, 0, .53], cam);
+    const fl = rbox(.16, .1, .04, MAT.blanco, .015, cam, [-.32, .2, .22]);
+    const dip = new THREE.Group(); N.R.hand.add(dip);
+    mesh(new THREE.CylinderGeometry(.08, .08, .6, 24), MAT.blanco, null, dip); mesh(new THREE.CylinderGeometry(.085, .085, .08, 24), MAT.rojo, null, dip);
+    const flash = destello(); G.add(flash);
+    const p1 = polaroid('#9CC9FF', 'TOGA'), p2 = polaroid('#A7E3A1', 'EXTERIOR'); G.add(p1, p2);
+    const w = new THREE.Vector3();
+    return {
+      G, cam: { w: 4.0, y: 1.75 },
+      update(t, g) {
+        vida(P, g); vida(N, g);
+        const up = k(t, [[0, 0], [.7, 1], [3.7, 1], [4.4, 0]]);
+        cam.position.set(0, 1.35 + up * 1.1, .85 + up * .2);
+        brazos(P, -.9 - up * 1.44, .45 - up * .16, -.9 - up * 1.44, -.45 + up * .16);
+        P.head.rotation.x = -.05 * up;
+        const d = k(t, [[0, 0], [.9, 0], [1.3, 1], [3.6, 1], [4.1, 0]]);
+        brazos(N, 0, -.15 - d * .3, -d * .4, .2 + d * 2.3);
+        dip.rotation.set(0, 0, d * -.3);
+        N.g.rotation.y = -.5 + Math.sin(t * 2) * .05;
+        const f = Math.max(pulso(t, 1.45, 1.75), pulso(t, 2.75, 3.05));
+        fl.getWorldPosition(w); flashLight.position.copy(w); flashLight.intensity = f * 25;
+        G.worldToLocal(w); flash.position.copy(w).add(new THREE.Vector3(0, 0, .3)); mostrar(flash, f * 1.3);
+        const a1 = smooth(ventana(t, 1.6, 2.2)), a2 = smooth(ventana(t, 2.9, 3.5)), fuera = 1 - ventana(t, 4.6, 5);
+        p1.position.set(-.9 - a1 * .6, 2.8 + a1 * .9, 1); p1.material.rotation = .12 * a1; mostrar(p1, a1 * fuera);
+        p2.position.set(.1 + a2 * .7, 2.8 + a2 * 1.0, 1.1); p2.material.rotation = -.1 * a2; mostrar(p2, a2 * fuera);
+      }
+    };
+  },
+  // 4. EDICIÓN — monitor + lápiz digital
+  () => {
+    const G = new THREE.Group(); const P = persona({ chica: true, pelo: MAT.pelo2 }); P.g.position.set(-.85, 0, .1); P.g.rotation.y = .5; G.add(P.g);
+    const esc = new THREE.Group(); esc.position.set(1.1, 0, .1); esc.rotation.y = -.45; G.add(esc);
+    sombraContacto(esc, 2.6, 1.6);
+    rbox(2.0, .08, 1.0, MAT.blanco, .03, esc, [0, 1.3, 0]);
+    for (const s of [-1, 1]) rbox(.07, 1.3, .07, MAT.gris, .03, esc, [s * .9, .65, 0]);
+    rbox(.08, .36, .08, MAT.gris, .03, esc, [0, 1.52, -.25]); rbox(.5, .03, .3, MAT.gris, .012, esc, [0, 1.355, -.25]);
+    rbox(1.75, 1.08, .07, MAT.negro, .03, esc, [0, 2.2, -.25]);
+    const tex = lienzo(512, 316, () => {});
+    pantalla(1.66, 1.0, tex, esc, [0, 2.2, -.212]);
+    rbox(.6, .03, .4, MAT.negro, .012, esc, [-.45, 1.36, .25]);
+    const lap = new THREE.Group(); P.R.hand.add(lap);
+    mesh(new THREE.CylinderGeometry(.025, .02, .5, 16), MAT.gris, null, lap); mesh(new THREE.ConeGeometry(.02, .06, 12), MAT.negro, [0, -.28, 0], lap).rotation.x = Math.PI;
+    function pinta(t) {
+      const { x, c } = tex.userData, w = c.width, h = c.height, p = smooth(ventana(t, .3, 3.2));
+      x.fillStyle = '#F3F4F6'; x.fillRect(0, 0, w, h);
+      x.fillStyle = '#fff'; x.fillRect(0, 0, w, 26); x.fillStyle = '#E5E7EB'; [12, 30, 48].forEach(a => { x.beginPath(); x.arc(a, 13, 5, 0, 7); x.fill(); });
+      fotoNino(x, 18, 40, 250, 260, false);
+      x.save(); x.beginPath(); x.rect(18, 40, 250 * p, 260); x.clip(); fotoNino(x, 18, 40, 250, 260, true); x.restore();
+      x.fillStyle = '#DB2777'; x.fillRect(16 + 250 * p, 36, 4, 268); x.beginPath(); x.arc(18 + 250 * p, 170, 9, 0, 7); x.fill();
+      for (let i = 0; i < 4; i++) {
+        const a = smooth(ventana(t, 1 + i * .7, 1.4 + i * .7)); if (a <= 0) continue;
+        const X = 290 + (i % 2) * 108, Y = 44 + Math.floor(i / 2) * 132;
+        x.globalAlpha = a; x.fillStyle = '#fff'; rr(x, X, Y, 96, 120, 8); x.fill(); x.strokeStyle = '#DB2777'; x.lineWidth = 3; x.stroke();
+        x.fillStyle = ['#9CC9FF', '#A7E3A1', '#FFD58A', '#F9A8D4'][i]; x.fillRect(X + 8, Y + 8, 80, 66);
+        x.fillStyle = '#E5E7EB'; x.fillRect(X + 8, Y + 84, 60, 8); x.fillRect(X + 8, Y + 98, 40, 8); x.globalAlpha = 1;
+      }
+      tex.needsUpdate = true;
+    }
+    pinta(0);
+    const ok = check(); ok.position.set(1.15, 3.15, .4); G.add(ok);
+    let ultimo = -1;
+    return {
+      G, cam: { w: 4.5, y: 1.8, x: .2 },
+      update(t, g) {
+        vida(P, g);
+        if (Math.abs(t - ultimo) > .03) { pinta(t); ultimo = t; }
+        const tr = t > .3 && t < 3.6;
+        const fin = k(t, [[3.8, 0], [4.2, 1], [5, 1]]);
+        brazos(P, -.5 - fin * .1, -.1 - fin * 2.3 + Math.sin(t * 12) * .25 * fin, -1.05 + (tr ? Math.sin(t * 7) * .1 : 0), -.55 + (tr ? Math.cos(t * 5) * .12 : 0));
+        lap.rotation.set(.9, 0, -.4);
+        P.head.rotation.y = k(t, [[0, .35], [3.6, .35], [4, -.2], [5, -.2]]);
+        P.head.rotation.x = tr ? .12 : 0;
+        mostrar(ok, t > 3.5 ? smooth(ventana(t, 3.5, 3.8)) : 0);
+      }
+    };
+  },
+  // 5. POSTVENTA — audífonos + celular
+  () => {
+    const G = new THREE.Group(); const P = persona({ chica: true, audifonos: true }); P.g.position.x = -.5; G.add(P.g);
+    const cel = new THREE.Group(); P.R.hand.add(cel);
+    const tex = lienzo(200, 400, (x, w) => {
+      x.fillStyle = '#ECE5DD'; x.fillRect(0, 0, w, 400); x.fillStyle = '#075E54'; x.fillRect(0, 0, w, 60);
+      x.fillStyle = '#fff'; x.font = '700 22px -apple-system, Inter, Arial'; x.fillText('Mamá de Sofía', 18, 40);
+      x.fillStyle = '#fff'; rr(x, 14, 80, 130, 40, 12); x.fill(); x.fillStyle = '#DCF8C6'; rr(x, 56, 134, 130, 40, 12); x.fill(); rr(x, 56, 188, 130, 90, 12); x.fill();
+      x.fillStyle = '#9CC9FF'; x.fillRect(66, 198, 60, 70);
+    });
+    rbox(.36, .7, .05, MAT.negro, .02, cel); pantalla(.32, .64, tex, cel, [0, 0, .027]);
+    const msgs = [chat('¿Cómo va mi anuario?'), chat('¡Ya está en edición! 🎨', true), chat('Su boceto listo 📖', true), chat('¡Aprobado! 😍👍')];
+    msgs.forEach((m, i) => { m.position.set(i % 2 ? 1.45 : 1.05, 3.55 - i * .52, .4); G.add(m); });
+    return {
+      G, cam: { w: 4.2, y: 1.85, x: .3 },
+      update(t, g) {
+        vida(P, g);
+        const wave = t < 1.4 ? Math.sin(t * 11) * .28 * ventana(t, .2, .5) : 0;
+        brazos(P, 0, k(t, [[0, -.1], [.35, -2.55], [1.3, -2.55], [1.7, -.12]]) + wave, -1.25 + Math.sin(g * 2) * .03, .3);
+        cel.rotation.set(1.0, -.3, 0);
+        P.head.rotation.y = k(t, [[0, 0], [1.6, 0], [2, .25], [4.5, .25], [5, 0]]);
+        msgs.forEach((m, i) => { const a = smooth(ventana(t, .8 + i * .9, 1.15 + i * .9)); mostrar(m, a * (1 + .12 * pulso(t, .8 + i * .9, 1.3 + i * .9))); });
+      }
+    };
+  },
+  // 6. IMPRESIÓN — impresora + hoja impresa
+  () => {
+    const G = new THREE.Group(); const P = persona({}); P.g.position.set(-.95, 0, .2); P.g.rotation.y = .45; G.add(P.g);
+    const imp = new THREE.Group(); imp.position.set(1.05, 0, -.1); imp.rotation.y = -.5; G.add(imp);
+    sombraContacto(imp, 2.4, 1.8);
+    rbox(1.6, 1.0, 1.1, MAT.gris, .08, imp, [0, .5, 0]);
+    rbox(1.7, .75, 1.2, MAT.blanco, .12, imp, [0, 1.38, 0]);
+    rbox(1.3, .06, .1, MAT.negro, .025, imp, [0, 1.3, .6]);
+    rbox(.5, .2, .04, MAT.negro, .015, imp, [-.4, 1.6, .6]);
+    const led = mesh(new THREE.SphereGeometry(.045, 16, 12), new THREE.MeshBasicMaterial({ color: 0x22C55E }), [.6, 1.6, .61], imp);
+    rbox(1.2, .04, .7, MAT.gris, .015, imp, [0, 1.06, .85]);
+    const texH = lienzo(300, 220, (x, w, h) => { x.fillStyle = '#fff'; x.fillRect(0, 0, w, h); fotoNino(x, 12, 12, 130, 196, true); x.fillStyle = '#FFD58A'; x.fillRect(156, 12, 132, 92); x.fillStyle = '#A7E3A1'; x.fillRect(156, 116, 132, 92); });
+    const hojaGeo = new THREE.PlaneGeometry(1.0, .72);
+    const hojaMat = new THREE.MeshPhysicalMaterial({ map: texH, roughness: .25, clearcoat: .8, side: THREE.DoubleSide });
+    const hojas = [0, 1, 2].map(() => { const m = mesh(hojaGeo, hojaMat, null, imp); m.rotation.x = -Math.PI / 2; return m; });
+    const enMano = mesh(hojaGeo, hojaMat, null, P.R.hand); enMano.scale.setScalar(.7);
+    const ok = check(); ok.position.set(-.95, 3.5, .6); G.add(ok);
+    const cartel = sprite(420, 110, (x, w, h) => { x.fillStyle = '#16A34A'; rr(x, 6, 6, w - 12, h - 12, 50); x.fill(); x.fillStyle = '#fff'; texto(x, 'Boceto aprobado ✓', w / 2, h / 2 + 2, w - 70, 46); }, .34);
+    cartel.position.set(1.05, 2.4, .2); G.add(cartel);
+    return {
+      G, cam: { w: 4.5, y: 1.75, x: .1 },
+      update(t, g) {
+        vida(P, g);
+        led.material.color.setHex((g * 3 | 0) % 2 ? 0x22C55E : 0x86EFAC);
+        mostrar(cartel, smooth(ventana(t, 0, .4)) * (1 - ventana(t, 4.6, 5)));
+        hojas.forEach((h, i) => { const u = smooth(ventana(t, .5 + i * 1.1, 1.3 + i * 1.1)); h.visible = u > 0; h.position.set(0, 1.12 + i * .012, .3 + u * .55); });
+        const v = k(t, [[0, 0], [3.4, 0], [3.9, 1], [4.6, 1], [5, 0]]);
+        brazos(P, -.4 - v * 1.3, -.1, -.5 - v * 1.5, -.15 + v * .2);
+        enMano.position.set(0, -.1, .1); enMano.rotation.set(-.3 + v * .2, .3, Math.PI / 2);
+        P.head.rotation.y = k(t, [[0, .4], [3.3, .4], [3.8, 0]]);
+        P.head.rotation.x = v * .1;
+        mostrar(ok, t > 4.2 ? smooth(ventana(t, 4.2, 4.5)) : 0);
+      }
+    };
+  },
+  // 7. TALLER — 3 personas: corte de MDF, doblado de papel, pegado y empastado
+  () => {
+    const G = new THREE.Group();
+    const X = [-2.0, 0, 2.0];
+    const W = [persona({}), persona({ chica: true, pelo: MAT.pelo2 }), persona({ pelo: MAT.pelo2 })];
+    W.forEach((p, i) => { p.g.position.set(X[i], 0, 0); p.g.rotation.y = -X[i] * .06; G.add(p.g); });
+    const mesas = X.map(x => { const m = new THREE.Group(); m.position.set(x, 0, .78); G.add(m); sombraContacto(m, 2, 1.2); rbox(1.5, .95, .8, MAT.gris, .1, m, [0, .475, 0]); return m; });
+    // 1: sierra + MDF
+    const mdfA = rbox(.62, .06, .6, MAT.madera, .01, mesas[0], [-.33, .98, -.1]);
+    const mdfB = rbox(.62, .06, .6, MAT.madera, .01, mesas[0], [.33, .98, -.1]);
+    const sierra = new THREE.Group(); W[0].R.hand.add(sierra);
+    rbox(.14, .22, .1, MAT.rojo, .04, sierra); rbox(.015, .18, .7, MAT.metal, .005, sierra, [0, -.1, .38]);
+    const polvo = [0, 1, 2, 3, 4].map(() => mesh(new THREE.SphereGeometry(.035, 8, 6), MAT.madera, null, G, false));
+    // 2: papel fotográfico que se dobla
+    const papel = new THREE.Group(); papel.position.set(0, .97, -.1); mesas[1].add(papel);
+    const pm = new THREE.MeshPhysicalMaterial({ roughness: .2, clearcoat: 1, side: THREE.DoubleSide, map: lienzo(256, 256, (x) => { x.fillStyle = '#fff'; x.fillRect(0, 0, 256, 256); fotoNino(x, 14, 14, 228, 228, true); }) });
+    mesh(new THREE.PlaneGeometry(.55, .6), pm, [-.275, 0, 0], papel).rotation.x = -Math.PI / 2;
+    const bisagra = new THREE.Group(); papel.add(bisagra);
+    mesh(new THREE.PlaneGeometry(.55, .6), pm, [.275, 0, 0], bisagra).rotation.x = -Math.PI / 2;
+    // 3: brocha + anuario que se empasta
+    const libro = new THREE.Group(); libro.position.set(0, .97, -.1); mesas[2].add(libro);
+    rbox(.6, .08, .7, MAT.blanco, .02, libro, [.3, .04, 0]);
+    const tapaG = new THREE.Group(); tapaG.position.set(0, .09, 0); libro.add(tapaG);
+    rbox(.62, .04, .72, MAT.azul, .015, tapaG, [-.31, 0, 0]);
+    const brocha = new THREE.Group(); W[2].R.hand.add(brocha);
+    mesh(new THREE.CylinderGeometry(.03, .03, .4, 12), MAT.madera, [0, .05, 0], brocha); rbox(.12, .14, .06, MAT.blanco, .02, brocha, [0, -.2, 0]);
+    const brillo = estrella(); brillo.position.set(2.0, 1.5, 1.0); G.add(brillo);
+    return {
+      G, cam: { w: 5.9, y: 1.5 },
+      update(t, g) {
+        W.forEach(p => vida(p, g));
+        const corta = t < 3.2;
+        brazos(W[0], -.62, .4, -.62 + (corta ? Math.sin(t * 16) * .16 : 0), -.38);
+        sierra.rotation.set(1, 0, 0);
+        const sep = smooth(ventana(t, 3.2, 3.7)) * .12; mdfA.position.x = -.33 - sep; mdfB.position.x = .33 + sep;
+        polvo.forEach((d, i) => { const u = ((t * 1.6 + i * .2) % 1); d.visible = corta; d.position.set(X[0] + .1 - u * .3, 1.02 - u * .9, .95 + i * .04); });
+        const dob = smooth(ventana(t, .8, 2.2));
+        bisagra.rotation.z = dob * Math.PI * .98;
+        brazos(W[1], -.62, .42, -.62 - dob * .5, -.42 + dob * .2);
+        const pega = t < 2.8;
+        tapaG.rotation.z = -Math.PI * (1 - smooth(ventana(t, 2.9, 3.6)));
+        brazos(W[2], -.62, .45, -.62 + (pega ? Math.sin(t * 12) * .12 : 0), -.35 + (pega ? Math.cos(t * 6) * .15 : 0));
+        brocha.rotation.set(1.1, 0, 0);
+        const mira = .25 * (1 - smooth(ventana(t, 3.9, 4.3)));
+        W.forEach(p => p.head.rotation.x = mira);
+        mostrar(brillo, smooth(ventana(t, 3.8, 4.2)) * (1 + .2 * Math.sin(g * 6)));
+        brillo.material.rotation = g * 1.5;
+      }
+    };
+  },
+  // 8. ENTREGA — anuario empacado + moto delivery
+  () => {
+    const G = new THREE.Group(); const P = persona({}); P.g.position.set(-1.0, 0, .2); P.g.rotation.y = .35; G.add(P.g);
+    const caja = new THREE.Group(); G.add(caja);
+    rbox(.82, .62, .62, MAT.carton, .04, caja);
+    mesh(new THREE.BoxGeometry(.84, .64, .1), fis(0xE8D3B0, { roughness: .6 }), null, caja);
+    mesh(new THREE.PlaneGeometry(.5, .2), new THREE.MeshBasicMaterial({ map: MAT.logo.map, transparent: true }), [0, .05, .315], caja);
+    const moto = new THREE.Group(); G.add(moto);
+    sombraContacto(moto, 2.6, 1.1);
+    const ruedas = [-.62, .62].map(x => { const r = new THREE.Group(); r.position.set(x, .3, 0); moto.add(r);
+      mesh(new THREE.TorusGeometry(.22, .1, 16, 32), MAT.negro, null, r); mesh(new THREE.CylinderGeometry(.13, .13, .1, 24), MAT.metal, null, r).rotation.x = Math.PI / 2;
+      rbox(.06, .3, .03, MAT.metal, .01, r, [0, 0, .06]); return r; });
+    const cuerpo = mesh(new THREE.CapsuleGeometry(.28, 1.0, 8, 24), MAT.rojo, [.05, .62, 0], moto); cuerpo.rotation.z = Math.PI / 2; cuerpo.scale.set(1, 1, .8);
+    rbox(.5, .14, .4, MAT.negro, .06, moto, [-.2, .92, 0]);
+    mesh(new THREE.CylinderGeometry(.05, .05, .8, 12), MAT.metal, [.62, .95, 0], moto).rotation.z = -.35;
+    mesh(new THREE.CylinderGeometry(.04, .04, .7, 12), MAT.negro, [.76, 1.33, 0], moto).rotation.x = Math.PI / 2;
+    mesh(new THREE.SphereGeometry(.1, 16, 12), MAT.amarillo, [.92, .95, 0], moto);
+    const rack = new THREE.Vector3(-.5, 1.3, 0), x0 = 1.35;
+    moto.rotation.y = -.35;
+    const pin = sprite(160, 200, (x) => { x.fillStyle = '#E11D48'; x.beginPath(); x.arc(80, 72, 62, Math.PI, 0); x.quadraticCurveTo(142, 120, 80, 196); x.quadraticCurveTo(18, 120, 18, 72); x.fill(); x.fillStyle = '#fff'; x.beginPath(); x.arc(80, 72, 26, 0, 7); x.fill(); }, .6);
+    G.add(pin);
+    const manos = new THREE.Vector3(), enMoto = new THREE.Vector3();
+    return {
+      G, cam: { w: 4.5, y: 1.75, x: .2 },
+      update(t, g) {
+        vida(P, g);
+        const lleva = k(t, [[0, 0], [1.3, 0], [2.3, 1], [5, 1]]);
+        const sale = smooth(ventana(t, 2.5, 4.0)), vuelve = smooth(ventana(t, 4.3, 4.9));
+        moto.position.x = t < 4.1 ? x0 + sale * 5 : x0 - 3 * (1 - vuelve);
+        moto.position.y = (t > 2.5 && t < 4.9) ? Math.abs(Math.sin(t * 20)) * .02 : 0;
+        moto.visible = !(t > 3.95 && t < 4.35);
+        ruedas.forEach(r => r.rotation.z = -moto.position.x * 4.5);
+        // caja: de las manos a la parrilla de la moto
+        manos.set(0, 1.45 + P.body.position.y, .85).applyEuler(P.g.rotation).add(P.g.position);
+        enMoto.copy(rack).applyEuler(moto.rotation).add(moto.position);
+        caja.position.lerpVectors(manos, enMoto, lleva); caja.position.y += Math.sin(lleva * Math.PI) * .5;
+        caja.rotation.y = .35 * (1 - lleva) + moto.rotation.y * lleva;
+        caja.visible = t < 3.95;
+        const chau = k(t, [[2.3, 0], [2.7, 2.5], [4, 2.5], [4.5, .1]]);
+        brazos(P, -1.05 * (1 - lleva) - .1, .5 * (1 - lleva) - lleva * chau + (t > 2.7 && t < 4 ? Math.sin(t * 11) * .25 : 0), -1.05 * (1 - lleva) - .1, -.5 * (1 - lleva) + lleva * .1);
+        P.head.rotation.y = k(t, [[0, 0], [2.4, 0], [3, -.5], [4, -.5], [4.5, 0]]);
+        pin.position.set(2.0, 2.6 + Math.sin(g * 3) * .08, 0); mostrar(pin, smooth(ventana(t, 2.6, 3)) * (1 - ventana(t, 4.2, 4.4)));
+      }
+    };
+  }
+];
+
+let ESC = [];
+const turn = new THREE.Group();
+function init3D() {
+  renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
+  renderer.setPixelRatio(Math.min(devicePixelRatio, 2.5));
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.05;
+  renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  stage.prepend(renderer.domElement);
+  scene = new THREE.Scene(); scene.background = new THREE.Color(0xffffff);
+  const pm = new THREE.PMREMGenerator(renderer); scene.environment = pm.fromScene(new RoomEnvironment(renderer), .04).texture;
+  camera = new THREE.PerspectiveCamera(28, 1, .1, 100);
+  scene.add(new THREE.HemisphereLight(0xffffff, 0xE6EBF2, .9));
+  const sol = new THREE.DirectionalLight(0xffffff, 1.9); sol.position.set(3.5, 8, 6); sol.castShadow = true;
+  sol.shadow.mapSize.set(2048, 2048); Object.assign(sol.shadow.camera, { left: -6, right: 6, top: 6, bottom: -2, near: 1, far: 25 });
+  sol.shadow.bias = -.0004; sol.shadow.normalBias = .03; scene.add(sol);
+  const rel = new THREE.DirectionalLight(0xDDE7FF, .7); rel.position.set(-5, 3, 4); scene.add(rel);
+  const contra = new THREE.DirectionalLight(0xffffff, .8); contra.position.set(0, 4, -6); scene.add(contra);
+  flashLight = new THREE.PointLight(0xfff6d0, 0, 6, 2); scene.add(flashLight);
+  const piso = new THREE.Mesh(new THREE.PlaneGeometry(40, 40), new THREE.ShadowMaterial({ opacity: .07 }));
+  piso.rotation.x = -Math.PI / 2; piso.receiveShadow = true; scene.add(piso);
+  initMateriales();
+  scene.add(turn);
+  ESC = ESCENAS.map(f => { const e = f(); e.G.visible = false; turn.add(e.G); return e; });
+  new ResizeObserver(redim).observe(stage); redim();
+  arrastre();
+  listo = true; $('#cargando').remove();
+}
+function redim() {
+  if (!renderer) return;
+  const w = stage.clientWidth, h = stage.clientHeight; if (!w || !h) return;
+  renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix(); encuadre(true);
+}
+function encuadre(inmediato) {
+  const e = ESC[actual]; if (!e) return;
+  // distancia para que quepa el ancho (w) y el alto (h) de la escena
+  const c = e.cam, tan = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
+  const d = Math.max(c.h || 4.6, c.w / camera.aspect) / (2 * tan) + 1;
+  camPosT.set(c.x || 0, c.y + .9, d); camLookT.set(c.x || 0, c.y, 0);
+  if (inmediato) { camPos.copy(camPosT); camLook.copy(camLookT); }
+}
+
+/* ---- girar con el dedo ---- */
+let rotY = 0, velY = 0, arrastrando = false, ultX = 0, tocado = false;
+function arrastre() {
+  const el = renderer.domElement;
+  el.addEventListener('pointerdown', e => { arrastrando = true; ultX = e.clientX; velY = 0; el.setPointerCapture(e.pointerId);
+    if (!tocado) { tocado = true; $('#hint').style.opacity = 0; } if (auto) pausar(); });
+  el.addEventListener('pointermove', e => { if (!arrastrando) return; const d = (e.clientX - ultX) * .011; rotY += d; velY = d; ultX = e.clientX; });
+  const fin = () => { arrastrando = false; };
+  el.addEventListener('pointerup', fin); el.addEventListener('pointercancel', fin);
+}
+
+/* ===================== APP ===================== */
+let actual = 0, auto = false, t0 = performance.now(), burbujaIdx = -1;
+const dur = () => CONFIG.accion + CONFIG.pausa;
+$('#stories').innerHTML = AREAS.map(() => '<i><b></b></i>').join('');
+$('#miniRuta').innerHTML = AREAS.map(a => `<span>${a.emoji}</span>`).join('');
+$('#gridAreas').innerHTML = AREAS.map((a, i) => `<button data-i="${i}"><span class="e">${a.emoji}</span><span class="n">FASE ${i + 1}</span><span class="t">${a.nombre}</span></button>`).join('');
+const icoPlay = '<svg viewBox="0 0 20 20"><path d="M6 4.2v11.6a.8.8 0 0 0 1.2.7l9.3-5.8a.8.8 0 0 0 0-1.4L7.2 3.5A.8.8 0 0 0 6 4.2Z" fill="#0B1220"/></svg>';
+const icoPausa = '<svg viewBox="0 0 20 20"><rect x="5" y="4" width="3.4" height="12" rx="1.2" fill="#0B1220"/><rect x="11.6" y="4" width="3.4" height="12" rx="1.2" fill="#0B1220"/></svg>';
+
+function ir(i) {
+  actual = (i + AREAS.length) % AREAS.length;
+  const a = AREAS[actual];
+  document.documentElement.style.setProperty('--c', a.color);
+  $('#fase').textContent = `Fase ${actual + 1} de ${AREAS.length} · ${a.lugar}`;
+  $('#titulo').textContent = `${a.emoji} ${a.nombre}`;
+  $('#resumen').textContent = a.resumen;
+  $('#herr').innerHTML = a.herramientas.map((h, k) => `<span class="${k === 0 ? 'c' : ''}">${h}</span>`).join('');
+  ESC.forEach((e, k) => e.G.visible = k === actual);
+  rotY = 0; velY = 0; turn.rotation.y = 0;
+  t0 = performance.now(); burbujaIdx = -1;
+  $('#repetir').classList.remove('on');
+  encuadre(false);
+  [...$('#stories').children].forEach((s, k) => s.firstChild.style.width = k < actual ? '100%' : '0%');
+  [...$('#gridAreas').children].forEach((b, k) => b.classList.toggle('on', k === actual));
+}
+function reproducir() { auto = true; $('#play').innerHTML = icoPausa; if ((performance.now() - t0) / 1000 > CONFIG.accion) ir(actual === AREAS.length - 1 ? 0 : actual + 1); }
+function pausar() { auto = false; $('#play').innerHTML = icoPlay; }
+$('#play').innerHTML = icoPlay;
+$('#play').onclick = () => auto ? pausar() : reproducir();
+$('#ant').onclick = () => ir(actual - 1);
+$('#sig').onclick = () => ir(actual + 1);
+$('#repetir').onclick = () => ir(actual);
+
+let previo = performance.now();
+function frame(now) {
+  requestAnimationFrame(frame);
+  const dt = Math.min(.1, (now - previo) / 1000); previo = now;
+  if (!listo || $('#area').classList.contains('off')) return;
+  const t = (now - t0) / 1000, ta = Math.min(t, CONFIG.accion), g = now / 1000;
+  ESC[actual].update(ta, g, t);
+  const a = AREAS[actual], bi = Math.min(a.burbujas.length - 1, Math.floor(ta / (CONFIG.accion / a.burbujas.length)));
+  if (bi !== burbujaIdx) { burbujaIdx = bi; const b = $('#burbuja'); b.textContent = a.burbujas[bi]; b.classList.remove('anim'); void b.offsetWidth; b.classList.add('anim'); }
+  $('#stories').children[actual].firstChild.style.width = Math.min(100, t / (auto ? dur() : CONFIG.accion) * 100) + '%';
+  if (t > CONFIG.accion) $('#repetir').classList.add('on');
+  if (auto && t > dur()) { if (actual < AREAS.length - 1) ir(actual + 1); else pausar(); }
+  const f60 = dt * 60;
+  if (!arrastrando) { rotY += velY * f60; velY *= Math.pow(.94, f60); }
+  turn.rotation.y += (rotY - turn.rotation.y) * (1 - Math.pow(.75, f60));
+  const suave = 1 - Math.exp(-dt * 6);
+  camPos.lerp(camPosT, suave); camLook.lerp(camLookT, suave);
+  camera.position.copy(camPos); camera.lookAt(camLook);
+  renderer.render(scene, camera);
+}
+requestAnimationFrame(frame);
+
+/* ---- hojas ---- */
+function abrirHoja(id) { $('#velo').classList.add('on'); $(id).classList.add('on'); if (auto) pausar(); }
+function cerrarHojas() { $('#velo').classList.remove('on'); document.querySelectorAll('.hoja').forEach(h => h.classList.remove('on')); }
+$('#velo').onclick = cerrarHojas;
+document.querySelectorAll('.hoja .grab').forEach(g => g.onclick = cerrarHojas);
+$('#menu').onclick = () => abrirHoja('#hojaMenu');
+$('#gridAreas').onclick = e => { const b = e.target.closest('button'); if (!b) return; cerrarHojas(); ir(+b.dataset.i); };
+document.querySelectorAll('.hoja').forEach(h => {
+  let y0 = null; h.addEventListener('touchstart', e => { y0 = h.querySelector('.cont').scrollTop <= 0 ? e.touches[0].clientY : null; }, { passive: true });
+  h.addEventListener('touchmove', e => { if (y0 !== null && e.touches[0].clientY - y0 > 70) { cerrarHojas(); y0 = null; } }, { passive: true });
+});
+const soles = n => 'S/ ' + n.toFixed(2);
+$('#verDetalle').onclick = () => {
+  const a = AREAS[actual];
+  let h = `<h3>${a.emoji} ${a.nombre}</h3><p class="sub">Fase ${actual + 1} de ${AREAS.length} · ${a.lugar}</p>
+    <ul class="lista">${a.tareas.map((t, k) => `<li><i>${k + 1}</i>${t}</li>`).join('')}</ul>`;
+  if (a.nota) h += `<div class="bloque nota">${a.nota}</div>`;
+  if (a.tipos) h += `<div class="bloque"><b class="t">Tipos de fotos del anuario</b><div class="tipos">${a.tipos.map(([e, t]) => `<div><span>${e}</span>${t}</div>`).join('')}</div></div>`;
+  if (a.calc) {
+    const max = CONFIG.delivery.at(-1).hastaKm;
+    h += `<div class="bloque calc"><b class="t">Calculadora de despacho</b>
+      <div class="seg"><button class="on" data-op="oficina">🏢 Oficina</button><button data-op="delivery">🛵 Delivery</button></div>
+      <div class="precio" id="precio">Sin costo</div><small id="det">Recojo en ${CONFIG.oficina}.</small>
+      <div id="kmBox" class="hidden"><input type="range" id="km" min="1" max="${max + 10}" value="5" aria-label="Distancia en km"></div>
+      <small style="margin-top:8px">Tarifas: ${CONFIG.delivery.map((t, i) => `${i ? CONFIG.delivery[i - 1].hastaKm : 0}–${t.hastaKm} km ${soles(t.precio)}`).join(' · ')} · más de ${max} km: cotizar.<br>⚠️ Tarifas de ejemplo.</small></div>`;
+  }
+  h += `<div class="bloque pasa">➡️ <span>Pasa a: <b>${a.pasa}</b></span></div>`;
+  $('#detalle').innerHTML = h; $('#detalle').parentElement.scrollTop = 0;
+  if (a.calc) {
+    let op = 'oficina';
+    const calc = () => {
+      $('#kmBox').classList.toggle('hidden', op !== 'delivery');
+      if (op === 'oficina') { $('#precio').textContent = 'Sin costo'; $('#det').textContent = 'Recojo en ' + CONFIG.oficina + '.'; return; }
+      const km = +$('#km').value, tf = CONFIG.delivery.find(t => km <= t.hastaKm);
+      $('#precio').textContent = tf ? soles(tf.precio) : 'Cotizar';
+      $('#det').textContent = tf ? `Delivery a ${km} km de la oficina.` : `${km} km: fuera de tarifa, cotizar con courier.`;
+    };
+    const segs = $('#detalle').querySelectorAll('.seg button');
+    segs.forEach(b => b.onclick = () => { op = b.dataset.op; segs.forEach(x => x.classList.toggle('on', x === b)); calc(); });
+    $('#km').oninput = calc;
+  }
+  abrirHoja('#hojaDetalle');
+};
+
+/* ---- navegación entre pantallas ---- */
+function pantallaA(id) { ['#gate', '#intro', '#area'].forEach(s => $(s).classList.toggle('off', s !== id)); }
+function iniciar() { if (!renderer) { try { init3D(); } catch (err) { $('#cargando').textContent = 'Tu navegador no soporta 3D (WebGL).'; console.error(err); } } }
+$('#comenzar').onclick = () => { pantallaA('#area'); iniciar(); ir(0); reproducir(); };
+$('#elegir').onclick = () => { pantallaA('#area'); iniciar(); ir(0); pausar(); abrirHoja('#hojaMenu'); };
+document.addEventListener('keydown', e => { if ($('#area').classList.contains('off')) return; if (e.key === 'ArrowRight') ir(actual + 1); if (e.key === 'ArrowLeft') ir(actual - 1); });
+
+/* ---- acceso solo para trabajadores ---- */
+// Filtro simple en el navegador: la web es estática y pública (ver README para privacidad real).
+async function sha256(t) { const b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(t)); return [...new Uint8Array(b)].map(x => x.toString(16).padStart(2, '0')).join(''); }
+$('#gateForm').addEventListener('submit', async e => {
+  e.preventDefault(); let ok = false;
+  try { ok = (await sha256($('#clave').value.trim())) === CONFIG.claveHash; } catch (_) {}
+  if (ok) { try { localStorage.setItem('selfieEquipo', CONFIG.claveHash); } catch (_) {} $('#clave').blur(); pantallaA('#intro'); }
+  else { $('#gateErr').textContent = 'Clave incorrecta'; const f = $('#gateForm'); f.classList.remove('shake'); void f.offsetWidth; f.classList.add('shake'); }
+});
+$('#salir').onclick = () => { try { localStorage.removeItem('selfieEquipo'); } catch (_) {} cerrarHojas(); pausar(); $('#clave').value = ''; $('#gateErr').textContent = ''; pantallaA('#gate'); };
+try { if (localStorage.getItem('selfieEquipo') === CONFIG.claveHash) pantallaA('#intro'); } catch (_) {}
+document.fonts && document.fonts.load('italic 800 100px "Baloo 2"').catch(() => {});
+</script>
+</body>
+</html>
