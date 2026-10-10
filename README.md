@@ -4,7 +4,7 @@ Landing de ventas de Selfie Anuarios (Corporación Selfie Studio S.A.C.) para Li
 
 ## Archivos
 - `index.html`: la web completa (HTML + CSS + JS, sin dependencias).
-- `libro-de-reclamaciones.html`: Libro de Reclamaciones virtual (envía por correo).
+- `CNAME`, `robots.txt`, `sitemap.xml`: listos para publicar en selfieanuarios.com.
 - `img/`: fotos reales de Selfie optimizadas en WebP y el logo.
 
 ## Secciones
@@ -18,11 +18,16 @@ El número se cambia en un solo lugar, al inicio del `<script>` de `index.html`:
 const SELFIE = { whatsapp: '51908865284', api: 'https://api.whatsapp.com/send', origen: 'web' };
 ```
 
-## Antes de publicar
-- Confirmar los precios para la Promo 2027 (hoy son los de la campaña 2026).
-- Cambiar `https://www.selfieanuarios.pe/` (canonical, Open Graph y schema) por el dominio real.
-- Confirmar el correo del Libro de Reclamaciones (`CORREO_RECLAMOS`).
-- Confirmar que se tiene la autorización de los padres para publicar las fotos de los niños.
+## Datos confirmados
+- Dominio: selfieanuarios.com.
+- Precios de la campaña 2026, vigentes también para la Promo 2027.
+- Libro de Reclamaciones oficial: https://www.respondo.pe/libro/corporacion-selfie-studio-s-a-c
+- Redes: Instagram, TikTok y Facebook `@selfieanuarios`.
+
+## Publicar en selfieanuarios.com (GitHub Pages)
+1. Settings → Pages → Deploy from branch → elegir la rama y `/ (root)`.
+2. El archivo `CNAME` ya apunta a `selfieanuarios.com`.
+3. En el proveedor del dominio: registros A a 185.199.108.153, 185.199.109.153, 185.199.110.153 y 185.199.111.153, y CNAME `www` → `julioveliz301988-create.github.io`.
 
 ## Ver en local
 ```bash
